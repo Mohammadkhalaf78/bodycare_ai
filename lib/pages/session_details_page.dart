@@ -57,6 +57,8 @@ class SessionDetailsPage extends StatelessWidget {
             ),
           ),
         ),
+        
+        
         body: SafeArea(
           child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),

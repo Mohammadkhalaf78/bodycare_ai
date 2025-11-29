@@ -1,4 +1,5 @@
 import 'package:bodycare_ai/costanses/colors.dart';
+import 'package:bodycare_ai/pages/body_diagram.dart';
 import 'package:bodycare_ai/pages/session_details_page.dart';
 import 'package:bodycare_ai/view_model/controller_deshbord.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = constColors();
     final ctrl = Get.put(DashboardController());
-
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F8FB),
@@ -35,10 +35,7 @@ class DashboardPage extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 18,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -96,7 +93,9 @@ class DashboardPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: TextButton.icon(
-                          onPressed: ctrl.startNewDiagnosis,
+                          onPressed: () {
+                            Get.to(() => BodyDiagram());
+                          },
                           icon: const Icon(
                             Icons.show_chart,
                             color: Color(0xFF2F80ED),
@@ -149,8 +148,10 @@ class DashboardPage extends StatelessWidget {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(14),
                                 onTap: () {
-                                  Get.to(() => SessionDetailsPage(sessionIndex: index));
-                                  
+                                  Get.to(
+                                    () =>
+                                        SessionDetailsPage(sessionIndex: index),
+                                  );
                                 },
                                 child: Container(
                                   height: 78.w,
@@ -244,7 +245,6 @@ class DashboardPage extends StatelessWidget {
                   ],
                 ),
               ),
-          
             ),
           ],
         ),

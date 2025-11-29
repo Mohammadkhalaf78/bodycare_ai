@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
        builder: (_ , child)=> GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home:  WelcomePage(),
+        home:  WelcomeView(),
       ),
     );
   }
