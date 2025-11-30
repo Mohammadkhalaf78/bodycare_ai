@@ -44,7 +44,7 @@ class _BodyDiagramState extends State<BodyDiagram> {
                 color: Colors.black87,
               ),
               onPressed: () {
-                Get.to(() => DashboardPage());
+                Get.back();
               },
             ),
           ),

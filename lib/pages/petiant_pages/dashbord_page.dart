@@ -1,7 +1,9 @@
+import 'package:bodycare_ai/pages/petiant_pages/body_diagram.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
-class DashboardStateless extends StatelessWidget {
-  const DashboardStateless({super.key});
+class DashBoardPage extends StatelessWidget {
+  const DashBoardPage({super.key});
 
   static const Color background = Color(0xFFF3F7F5);
   static const Color primaryGreen = Color(0xFF2F9D82); // اللون الأخضر الأساسي
@@ -23,7 +25,9 @@ class DashboardStateless extends StatelessWidget {
                   // avatar
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: AssetImage('assets/avatar.jpg'), // ضع صورة هنا أو استخدم NetworkImage
+                    backgroundImage: AssetImage(
+                      'assets/avatar.jpg',
+                    ), // ضع صورة هنا أو استخدم NetworkImage
                     // backgroundColor: Colors.grey[300],
                   ),
                   const SizedBox(width: 12),
@@ -67,7 +71,10 @@ class DashboardStateless extends StatelessWidget {
             // content scroll area
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 18,
+                  vertical: 6,
+                ),
                 child: Column(
                   children: [
                     // --- Big green card with body image + text + small white card below (floating)
@@ -77,7 +84,7 @@ class DashboardStateless extends StatelessWidget {
                         // Main green card
                         Container(
                           width: double.infinity,
-                          height: 160,
+                          height: 190,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
                               colors: [Color(0xFF2F9D82), Color(0xFF48B994)],
@@ -95,62 +102,62 @@ class DashboardStateless extends StatelessWidget {
                           ),
                           padding: const EdgeInsets.all(16),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // left: body illustration (replace with asset/svg)
                               Container(
                                 width: 110,
-                                height: 110,
+                                height: 160,
                                 alignment: Alignment.center,
                                 child: Opacity(
                                   opacity: 0.95,
-                                  child: Icon(
-                                    Icons.accessibility_new,
-                                    size: 84,
-                                    color: Colors.white.withOpacity(0.95),
-                                  ),
-                                  // استبدل الـ Icon بصورة الجسم: Image.asset('assets/body.png')
+                                  child: Image.asset('assets/photo/body.png'),
                                 ),
                               ),
 
-                              const SizedBox(width: 12),
+                              const SizedBox(width: 66),
 
                               // right: text and button
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      'Tap here to\nstart your 3D\ndiagnosis.',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        height: 1.08,
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'Tap here to\nstart your 3D\ndiagnosis.',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      height: 1.08,
+                                      fontWeight: FontWeight.w700,
                                     ),
-                                    const SizedBox(height: 10),
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white,
-                                          foregroundColor: primaryGreen,
-                                          elevation: 2,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 14, vertical: 8),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-                                          textStyle: const TextStyle(
-                                              fontWeight: FontWeight.w700),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Get.to(BodyDiagram());
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        foregroundColor: primaryGreen,
+                                        elevation: 2,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 14,
+                                          vertical: 8,
                                         ),
-                                        child: const Text('Start Now'),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                        ),
+                                        textStyle: const TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
+                                      child: const Text('Start Now'),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -158,7 +165,7 @@ class DashboardStateless extends StatelessWidget {
 
                         // Floating small white card under the green card (Feeling discomfort)
                         Positioned(
-                          bottom: -28,
+                          bottom: -60,
                           left: 8,
                           right: 8,
                           child: Material(
@@ -166,7 +173,9 @@ class DashboardStateless extends StatelessWidget {
                             borderRadius: BorderRadius.circular(14),
                             child: Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 12),
+                                horizontal: 14,
+                                vertical: 12,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(14),
@@ -175,19 +184,23 @@ class DashboardStateless extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: const [
                                         Text(
                                           'Feeling discomfort?',
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              color: darkText),
+                                            fontWeight: FontWeight.w700,
+                                            color: darkText,
+                                          ),
                                         ),
                                         SizedBox(height: 6),
                                         Text(
                                           'Start a new diagnosis now.',
                                           style: TextStyle(
-                                              color: mutedText, fontSize: 13),
+                                            color: mutedText,
+                                            fontSize: 13,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -197,16 +210,20 @@ class DashboardStateless extends StatelessWidget {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: primaryGreen,
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 14, vertical: 10),
+                                        horizontal: 14,
+                                        vertical: 10,
+                                      ),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
                                     child: const Text(
                                       'Start Now',
-                                      style: TextStyle(fontWeight: FontWeight.w700),
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -215,8 +232,9 @@ class DashboardStateless extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 44), // space because of floating card
-
+                    const SizedBox(
+                      height: 77,
+                    ), // space because of floating card
                     // Recent Sessions header
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -224,15 +242,17 @@ class DashboardStateless extends StatelessWidget {
                         Text(
                           'Recent Sessions',
                           style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black87),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black87,
+                          ),
                         ),
                         Text(
                           'View All',
                           style: TextStyle(
-                              color: primaryGreen,
-                              fontWeight: FontWeight.w600),
+                            color: primaryGreen,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -275,8 +295,15 @@ class DashboardStateless extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _navItem(icon: Icons.dashboard, label: 'Dashboard', active: true),
-                  _navItem(icon: Icons.medical_services_outlined, label: 'Doctors'),
+                  _navItem(
+                    icon: Icons.dashboard,
+                    label: 'Dashboard',
+                    active: true,
+                  ),
+                  _navItem(
+                    icon: Icons.medical_services_outlined,
+                    label: 'Doctors',
+                  ),
                   _navItem(icon: Icons.lightbulb_outline, label: 'Tips'),
                   _navItem(icon: Icons.person_outline, label: 'Profile'),
                 ],
@@ -302,9 +329,10 @@ class DashboardStateless extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.03),
-              blurRadius: 12,
-              offset: const Offset(0, 6)),
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 12,
+            offset: const Offset(0, 6),
+          ),
         ],
       ),
       child: Row(
@@ -316,10 +344,7 @@ class DashboardStateless extends StatelessWidget {
               color: primaryGreen.withOpacity(0.12),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Icon(
-              Icons.healing_outlined,
-              color: primaryGreen,
-            ),
+            child: const Icon(Icons.healing_outlined, color: primaryGreen),
           ),
           const SizedBox(width: 12),
           // title + date
@@ -327,9 +352,13 @@ class DashboardStateless extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w700, color: Colors.black87)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black87,
+                  ),
+                ),
                 const SizedBox(height: 6),
                 Text(date, style: const TextStyle(color: mutedText)),
               ],
@@ -357,7 +386,11 @@ class DashboardStateless extends StatelessWidget {
   }
 
   // helper for nav item
-  Widget _navItem({required IconData icon, required String label, bool active = false}) {
+  Widget _navItem({
+    required IconData icon,
+    required String label,
+    bool active = false,
+  }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -370,7 +403,7 @@ class DashboardStateless extends StatelessWidget {
             fontSize: 12,
             fontWeight: active ? FontWeight.w700 : FontWeight.w500,
           ),
-        )
+        ),
       ],
     );
   }

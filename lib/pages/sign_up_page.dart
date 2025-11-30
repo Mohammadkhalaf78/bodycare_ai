@@ -1,5 +1,5 @@
 import 'package:bodycare_ai/costanses/colors.dart';
-import 'package:bodycare_ai/pages/login_page.dart';
+import 'package:bodycare_ai/pages/auth_pages/login_page.dart';
 import 'package:bodycare_ai/widgate/button_widgate.dart';
 import 'package:bodycare_ai/widgate/container_widgate.dart';
 import 'package:bodycare_ai/widgate/texfiled_widgate.dart';

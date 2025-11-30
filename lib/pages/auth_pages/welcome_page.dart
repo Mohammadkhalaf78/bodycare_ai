@@ -5,7 +5,7 @@
 // import 'package:get/get.dart';
 // import 'package:get/get_core/src/get_main.dart';
 
-import 'package:bodycare_ai/pages/login_page.dart';
+import 'package:bodycare_ai/pages/auth_pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';

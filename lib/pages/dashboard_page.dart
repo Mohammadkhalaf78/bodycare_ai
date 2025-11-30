@@ -1,5 +1,5 @@
 import 'package:bodycare_ai/costanses/colors.dart';
-import 'package:bodycare_ai/pages/body_diagram.dart';
+import 'package:bodycare_ai/pages/petiant_pages/body_diagram.dart';
 import 'package:bodycare_ai/pages/session_details_page.dart';
 import 'package:bodycare_ai/view_model/controller_deshbord.dart';
 import 'package:flutter/material.dart';

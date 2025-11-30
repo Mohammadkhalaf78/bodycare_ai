@@ -1,11 +1,13 @@
 import 'package:bodycare_ai/pages/dashboard_page.dart';
-import 'package:bodycare_ai/pages/dashbord_page.dart';
+import 'package:bodycare_ai/pages/petiant_pages/dashbord_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+   LoginPage({super.key});
+
+   
 
   static const Color bg = Color(0xFFF4F7F6);
   static const Color primary = Color(0xFF11856F); // أخضر الرئيسي
@@ -207,7 +209,7 @@ class LoginPage extends StatelessWidget {
                       height: 56,
                       child: ElevatedButton(
                         onPressed: () {
-                              Get.to(DashboardStateless());
+                          Get.to(DashBoardPage());
 
                         },
                         style: ElevatedButton.styleFrom(
