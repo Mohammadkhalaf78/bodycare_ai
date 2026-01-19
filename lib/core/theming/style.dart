@@ -66,6 +66,22 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.semiBold,
     color: ColorsManeger.wightGreen,
   );
+  static TextStyle font14BlackSemiBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManeger.dark,
+  );
+  static TextStyle font14RedSemiBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    // ignore: deprecated_member_use
+    color: Color(Colors.red.value),
+  );
+  static TextStyle font14WightMedium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManeger.wightColor,
+  );
 
 
 

@@ -7,4 +7,6 @@ class Routes {
   static const String dashBoardPage = '/dashBoardPage';
   static const String bodyDiagram = '/BodyDiagram';
   static const String sessionDetails = '/SessionDetails';
+  static const String mainNavigation = '/mainNavigation';
+  static const String doctorsPage = '/DoctorsPage';
 }

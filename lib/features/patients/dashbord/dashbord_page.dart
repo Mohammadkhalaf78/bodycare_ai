@@ -2,7 +2,6 @@ import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
-import 'package:bodycare_ai/features/patients/widgets/navigation_button.dart';
 import 'package:bodycare_ai/features/patients/widgets/session_item.dart';
 import 'package:bodycare_ai/features/users/data/data_story/session_data.dart';
 import 'package:flutter/material.dart';
@@ -201,7 +200,6 @@ class DashBoardPage extends StatelessWidget {
             ),
 
             // Bottom navigation (simple)
-            NavigationButton()
           ],
         ),
       ),

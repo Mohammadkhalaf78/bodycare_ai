@@ -2,7 +2,6 @@ import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
-import 'package:bodycare_ai/features/patients/widgets/navigation_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
@@ -107,7 +106,6 @@ class _BodyDiagramState extends State<BodyDiagram> {
                 ),
               ),
             ),
-            NavigationButton(),
           ],
         ),
         // body: ModelViewer(src: 'assets/model/male_royal_guard.glb'),

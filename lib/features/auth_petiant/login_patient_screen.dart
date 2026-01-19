@@ -102,7 +102,7 @@ class LoginPatientScreen extends StatelessWidget {
                     AppTextButton(
                       textStyle: AppTextStyle.font16GrayRegular,
                       onPressed: () {
-                        context.pushNamed('/dashBoardPage');
+                        context.pushNamed('/mainNavigation');
                       },
                       buttonText: 'Sign in ',
                     ),

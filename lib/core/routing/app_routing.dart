@@ -1,9 +1,11 @@
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/features/auth_petiant/forgot_password.dart';
 import 'package:bodycare_ai/features/auth_petiant/sign_in_pathent_screen.dart';
-import 'package:bodycare_ai/features/patients/body_diagram.dart';
-import 'package:bodycare_ai/features/patients/dashbord_page.dart';
-import 'package:bodycare_ai/features/patients/session_details_page.dart';
+import 'package:bodycare_ai/features/main_navigation.dart';
+import 'package:bodycare_ai/features/patients/dashbord/body_diagram.dart';
+import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
+import 'package:bodycare_ai/features/patients/dashbord/session_details_page.dart';
+import 'package:bodycare_ai/features/patients/doctors_page.dart';
 import 'package:bodycare_ai/features/users/data/models/sessions_history.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/role_screen.dart';
 import 'package:bodycare_ai/features/auth_petiant/login_patient_screen.dart';
@@ -32,6 +34,12 @@ class AppRoute {
 
       case Routes.bodyDiagram:
         return MaterialPageRoute(builder: (_) => BodyDiagram());
+        
+      case Routes.mainNavigation:
+        return MaterialPageRoute(builder: (_) => MainNavigation());
+        
+      case Routes.doctorsPage:
+        return MaterialPageRoute(builder: (_) => DoctorsPage());
 
       case Routes.sessionDetails:
         final args = settings.arguments as SessionsHistory;
