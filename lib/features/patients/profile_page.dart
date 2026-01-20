@@ -5,7 +5,6 @@ import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:bodycare_ai/features/patients/widgets/sattings_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -47,22 +46,15 @@ class ProfilePage extends StatelessWidget {
                 },
               ),
               verticalSpace(40),
-              ElevatedButton(
+
+              AppTextButton(
+                textStyle: AppTextStyle.font14RedSemiBold,
                 onPressed: () {
                   context.pushReplacementNamed('/loginScreen');
                 },
-
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsManeger.mainBlue,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 140.w,
-                    vertical: 14.h,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                ),
-                child: Text('Logout', style: AppTextStyle.font14RedSemiBold),
+                buttonText: 'Logout',
+                backgroundColor: ColorsManeger.mainBlue,
+                side: BorderSide(color: Colors.red, width: 1.3),
               ),
             ],
           ),

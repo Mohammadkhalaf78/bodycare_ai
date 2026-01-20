@@ -98,7 +98,9 @@ class _BodyDiagramState extends State<BodyDiagram> {
                             ),
                           ],
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context.pushReplacementNamed('/ChatPage');
+                        },
                         buttonText: 'Next',
                       ),
                     ],

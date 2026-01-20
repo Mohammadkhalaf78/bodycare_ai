@@ -1,4 +1,3 @@
-import 'package:bodycare_ai/features/patients/widgets/doctor_card.dart';
 import 'package:bodycare_ai/features/users/data/models/doctor_model.dart';
 
 List<DoctorModel> doctorsData = [

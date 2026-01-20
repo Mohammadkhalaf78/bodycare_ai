@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   birth_picker: ^1.2.0
+  chat_bubbles: ^1.8.0
   flutter:
     sdk: flutter
 

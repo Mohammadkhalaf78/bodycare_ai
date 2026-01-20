@@ -1,7 +1,9 @@
-import 'package:bodycare_ai/core/theming/colors.dart';
-import 'package:bodycare_ai/core/theming/style.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:bodycare_ai/core/theming/colors.dart';
+import 'package:bodycare_ai/core/theming/style.dart';
 
 class AppTextFormFiled extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
@@ -11,6 +13,8 @@ class AppTextFormFiled extends StatelessWidget {
   final TextStyle? hintStyle;
   final String hintText;
   final bool? isObscureText;
+  final TextEditingController? controller;
+
   final Color? backGrgroundColor;
   final Widget? suffixIcons;
   final Widget? prefixIcon;
@@ -23,13 +27,16 @@ class AppTextFormFiled extends StatelessWidget {
     this.hintStyle,
     required this.hintText,
     this.isObscureText,
+    this.controller,
+    this.backGrgroundColor,
     this.suffixIcons,
-    this.backGrgroundColor, this.prefixIcon,
+    this.prefixIcon,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       
       decoration: InputDecoration(
         isDense: true,
@@ -40,11 +47,14 @@ class AppTextFormFiled extends StatelessWidget {
 
         contentPadding:
             contentPadding ??
-            EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+            EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
         focusedBorder:
             focusedBorder ??
             OutlineInputBorder(
-              borderSide: BorderSide(color: ColorsManeger.darkGreen, width: 1.3),
+              borderSide: BorderSide(
+                color: ColorsManeger.darkGreen,
+                width: 1.3,
+              ),
               borderRadius: BorderRadius.circular(16),
             ),
         enabledBorder:

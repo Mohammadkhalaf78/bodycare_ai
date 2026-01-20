@@ -1,3 +1,4 @@
+import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/features/patients/widgets/doctor_card.dart';
 import 'package:bodycare_ai/features/users/data/data_story/doctor_data.dart';
@@ -21,7 +22,9 @@ class DoctorsPage extends StatelessWidget {
         child: ListView.builder(
           itemCount: doctorsData.length,
           itemBuilder: (context,index){
-          return DoctorCard(doctor: doctorsData[index]);
+          return DoctorCard(doctor: doctorsData[index],onBook: () {
+            context.pushNamed('/DoctorProfile', arguments: doctorsData[index]);
+          },);
         })
       ),
     );

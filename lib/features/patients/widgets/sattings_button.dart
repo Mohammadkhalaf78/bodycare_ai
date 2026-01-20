@@ -33,7 +33,7 @@ class SattingsButton extends StatelessWidget {
               ),
             ),
             horizontalSpace(10),
-            Text('${title}', style: AppTextStyle.font14GrayMedium),
+            Text('$title', style: AppTextStyle.font14GrayMedium),
             Spacer(),
             Icon(
 

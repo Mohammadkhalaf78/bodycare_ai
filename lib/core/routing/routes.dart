@@ -9,4 +9,6 @@ class Routes {
   static const String sessionDetails = '/SessionDetails';
   static const String mainNavigation = '/mainNavigation';
   static const String doctorsPage = '/DoctorsPage';
+  static const String doctorProfile = '/DoctorProfile';
+  static const String chatPage = '/ChatPage';
 }

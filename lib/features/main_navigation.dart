@@ -1,6 +1,6 @@
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
-import 'package:bodycare_ai/features/patients/doctors_page.dart';
+import 'package:bodycare_ai/features/patients/doctors/doctors_page.dart';
 import 'package:bodycare_ai/features/patients/profile_page.dart';
 import 'package:bodycare_ai/features/patients/tips_page.dart';
 import 'package:flutter/material.dart';

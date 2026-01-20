@@ -106,4 +106,9 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManeger.gray,
   );
+  static TextStyle font10weightReguler = TextStyle(
+    fontSize: 10.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManeger.wightColor,
+  );
 }
