@@ -1,7 +1,10 @@
+import 'package:bodycare_ai/core/cubit/user_cubit.dart';
+import 'package:bodycare_ai/core/network/api/api_consumer.dart';
 import 'package:bodycare_ai/core/routing/app_routing.dart';
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyCare extends StatelessWidget {
@@ -23,7 +26,7 @@ class BodyCare extends StatelessWidget {
           ),
           debugShowCheckedModeBanner: false,
           initialRoute: Routes.welcomeScreen,
-
+        
           onGenerateRoute: appRoute.generateRoute,
         );
       },

@@ -1,11 +1,11 @@
 import 'package:bodycare_ai/core/helpers/spacing.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
-import 'package:bodycare_ai/features/users/data/models/doctor_model.dart';
+import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 import 'package:flutter/material.dart';
 
 class DoctorCard extends StatelessWidget {
-  final DoctorModel doctor;
+  final FormattedDoctor doctor;
   final VoidCallback? onBook;
 
   const DoctorCard({
@@ -37,7 +37,7 @@ class DoctorCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(44),
             child: Image.network(
-              doctor.imageUrl,
+              'https://tse2.mm.bing.net/th/id/OIP.pDFeeMmtwJ6uruwvbvlItQHaE7?pid=Api&P=0&h=220',
               width: 70,
               height: 70,
               fit: BoxFit.cover,
@@ -70,7 +70,8 @@ class DoctorCard extends StatelessWidget {
                   children: [
                   
                     Text(
-                      doctor.rating.toString(),
+                      'ra',
+                      // doctor.rating.toString(),
                       style: AppTextStyle.font12GrayMedium,
                     ),
                     horizontalSpace(4),
@@ -78,13 +79,13 @@ class DoctorCard extends StatelessWidget {
                         size: 18, color: Colors.amber),
                     horizontalSpace(3),
                     Text(
-                      '(${doctor.reviewsCount} reviews)',
+                      '(7 reviews)',
                       style: AppTextStyle.font12Grayregular,
                     ),
                   ],
                 ),
                 Text(
-                  doctor.distance,
+                '22',
                   style:AppTextStyle.font12Grayregular
                 ),
               ],

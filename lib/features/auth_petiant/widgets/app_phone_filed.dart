@@ -3,21 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 class AppFormPhoneFiled extends StatelessWidget {
-  const AppFormPhoneFiled({super.key});
+  const AppFormPhoneFiled({super.key, required this.controller});
+  final PhoneController controller;
 
   @override
   Widget build(BuildContext context) {
     return PhoneFormField(
-      initialValue: PhoneNumber.parse('+20'), // or use the controller
+      controller:controller ,
+      // initialValue: PhoneNumber(
+      //   isoCode: IsoCode.EG,
+      //   nsn: controller,
+      // ), // or use the controller
       decoration: InputDecoration(
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-
         ),
         focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: ColorsManeger.darkGreen, width: 1.3),
-              borderRadius: BorderRadius.circular(16),
-            ),
+          borderSide: const BorderSide(
+            color: ColorsManeger.darkGreen,
+            width: 1.3,
+          ),
+          borderRadius: BorderRadius.circular(16),
+        ),
         hintText: 'Enter your phone number',
       ),
       countrySelectorNavigator: const CountrySelectorNavigator.page(),
