@@ -5,9 +5,8 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-DoctorsModel doctorsModelFromJson(String str) => DoctorsModel.fromJson(json.decode(str));
 
-String doctorsModelToJson(DoctorsModel data) => json.encode(data.toJson());
+// String doctorsModelToJson(DoctorsModel data) => json.encode(data.toJson());
 
 class DoctorsModel {
     final List<FormattedDoctor> formattedDoctors;
@@ -20,9 +19,9 @@ class DoctorsModel {
         formattedDoctors: List<FormattedDoctor>.from(json["formattedDoctors"].map((x) => FormattedDoctor.fromJson(x))),
     );
 
-    Map<String, dynamic> toJson() => {
-        "formattedDoctors": List<dynamic>.from(formattedDoctors.map((x) => x.toJson())),
-    };
+    // Map<String, dynamic> toJson() => {
+    //     "formattedDoctors": List<dynamic>.from(formattedDoctors.map((x) => x.toJson())),
+    // };
 }
 
 class FormattedDoctor {
@@ -54,13 +53,13 @@ class FormattedDoctor {
         bio: json["bio"],
     );
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "email": email,
-        "specialty": specialty,
-        "imageUrl": imageUrl,
-        "coordinates": List<dynamic>.from(coordinates.map((x) => x)),
-        "bio": bio,
-    };
+    // Map<String, dynamic> toJson() => {
+    //     "id": id,
+    //     "name": name,
+    //     "email": email,
+    //     "specialty": specialty,
+    //     "imageUrl": imageUrl,
+    //     "coordinates": List<dynamic>.from(coordinates.map((x) => x)),
+    //     "bio": bio,
+    // };
 }

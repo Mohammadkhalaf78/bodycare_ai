@@ -107,20 +107,12 @@ class UserCubit extends Cubit<UserState> {
     try {
       emit(GetDoctorsLoading());
 
-      final response = await api.get(EndPoint.getDoctors);
+      final response = await api.get(
+        EndPoint.getDoctors);
 
-      final List doctorsJson = response['formattedDoctors'];
-
-      final List<FormattedDoctor> doctors = doctorsJson
-          .map((e) => FormattedDoctor.fromJson(e))
-          .toList();
-
-      print('-----------------------------------------------');
-      print(doctors);
-
-      emit(GetDoctorsSuccess(doctors, doctorsModel: DoctorsModel(formattedDoctors: doctors)));
+      emit(GetDoctorsSuccess(doctors: DoctorsModel.fromJson(response)));
     } on ServerException catch (e) {
-      emit(GetDoctorsFailure(errMessage: e.errModel.status.toString()));
+      emit(GetDoctorsFailure(errMessage: e.errModel.errorMessage.toString()));
     }
   }
 

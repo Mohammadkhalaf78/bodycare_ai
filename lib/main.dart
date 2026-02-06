@@ -4,7 +4,6 @@ import 'package:bodycare_ai/core/network/api/dio_consumer.dart';
 import 'package:bodycare_ai/core/network/helpers.dart/dio_helper.dart';
 import 'package:bodycare_ai/core/routing/app_routing.dart';
 import 'package:bodycare_ai/features/body_care.dart';
-import 'package:bodycare_ai/features/patients/doctors/doctors/cubit/BlocObserver.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/welcome_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ import 'package:get/get.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
-  Bloc.observer = MyBlocObserver();
 
   await DioHelper.init();
 

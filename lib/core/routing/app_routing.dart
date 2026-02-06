@@ -1,8 +1,8 @@
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/features/auth_petiant/forgot_password.dart';
 import 'package:bodycare_ai/features/auth_petiant/sign_in_pathent_screen.dart';
+import 'package:bodycare_ai/features/body_care.dart';
 import 'package:bodycare_ai/features/main_navigation.dart';
-import 'package:bodycare_ai/features/patients/dashbord/body_diagram.dart';
 import 'package:bodycare_ai/features/patients/dashbord/chat_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/session_details_page.dart';
@@ -36,8 +36,8 @@ class AppRoute {
       case Routes.dashBoardPage:
         return MaterialPageRoute(builder: (_) => DashBoardPage());
 
-      case Routes.bodyDiagram:
-        return MaterialPageRoute(builder: (_) => BodyDiagram());
+      // case Routes.bodyDiagram:
+      //   return MaterialPageRoute(builder: (_) => BodyCare(appRoute: ));
         
       case Routes.mainNavigation:
         return MaterialPageRoute(builder: (_) => MainNavigation());

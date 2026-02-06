@@ -1,6 +1,7 @@
+import 'package:bodycare_ai/core/cubit/user_cubit.dart';
+import 'package:bodycare_ai/core/cubit/user_state.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
-import 'package:bodycare_ai/features/patients/doctors/doctors/cubit/doctors_cubit.dart';
 import 'package:bodycare_ai/features/patients/widgets/doctor_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,12 +11,16 @@ class DoctorsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DoctorsCubit, DoctorsState>(
+    return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is GetDoctorsFailure) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text('state.errormassege')));
+        }
       },
       builder: (context, state) {
-        final cubit = DoctorsCubit.get(context);
+        final cubit = context.read<UserCubit>();
         return Scaffold(
           backgroundColor: ColorsManeger.mainBlue,
           appBar: AppBar(
@@ -24,30 +29,28 @@ class DoctorsPage extends StatelessWidget {
           ),
           body: state is GetDoctorsLoading
               ? Center(child: CircularProgressIndicator())
-              : state is GetDoctorsSuccess
-              ? Padding(
+              : state is GetDoctorsSuccess?
+               Padding(
                   padding: const EdgeInsets.all(16),
                   child: ListView.builder(
-                    itemCount: cubit.doctorsModel!.formattedDoctors.length,
+                    itemCount: state.doctors.formattedDoctors.length,
                     itemBuilder: (context, index) {
                       return DoctorCard(
-                        doctor: cubit.doctorsModel!.formattedDoctors[index],
+                        doctor: state.doctors.formattedDoctors[index],
                         onBook: () {
                           context.pushNamed(
                             '/DoctorDetailsPage',
-                            arguments: cubit.doctorsModel!.formattedDoctors[index],
+                            arguments:
+                                state.doctors.formattedDoctors[index],
                           );
                         },
                       );
                     },
                   ),
                 )
-              : state is GetDoctorsError
-              ? Text('Error: ${state.error}')
-              : Text('Press button to load data'),
+              : Container()
         );
       },
     );
   }
 }
-
