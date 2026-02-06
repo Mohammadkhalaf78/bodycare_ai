@@ -40,6 +40,15 @@ class UserCubit extends Cubit<UserState> {
   //Sign up confirm password
   TextEditingController confirmPassword = TextEditingController();
 
+  //user state -------------------------------
+  List<String> selectedModelParts = [];
+  void onModelPartSelected(List<String> parts) {
+    selectedModelParts = parts;
+    emit(ModelPartSelected(parts));
+  }
+
+  //--------------------------------------------
+
   TextEditingController chatBootController = TextEditingController();
   SignInModel? user;
   ChatbootModel? chatboot;
@@ -107,8 +116,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       emit(GetDoctorsLoading());
 
-      final response = await api.get(
-        EndPoint.getDoctors);
+      final response = await api.get(EndPoint.getDoctors);
 
       emit(GetDoctorsSuccess(doctors: DoctorsModel.fromJson(response)));
     } on ServerException catch (e) {
@@ -133,11 +141,14 @@ class UserCubit extends Cubit<UserState> {
       );
       chatboot = ChatbootModel.fromJson(response);
       chatData.add(
-      MessegesModel(
-        messeges: chatboot!.aiReply?.error ?? chatboot!.aiReply?.content ?? 'No reply',
-        isSender: false,
-      ),
-    );
+        MessegesModel(
+          messeges:
+              chatboot!.aiReply?.error ??
+              chatboot!.aiReply?.content ??
+              'No reply',
+          isSender: false,
+        ),
+      );
       // 1. أضف رسالة المستخدم
       // final botText =
       //     response.aiReply?.content ?? response.aiReply?.error ?? 'No reply';

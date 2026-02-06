@@ -60,3 +60,14 @@ final class chatBootFailure extends UserState {
 
   chatBootFailure({required this.errMessage});
 }
+
+///model state -----------------------------------
+
+class ModelPartSelected extends UserState {
+  final List<String> selectedParts;
+
+  ModelPartSelected(this.selectedParts);
+}
+
+
+//------------------------------------

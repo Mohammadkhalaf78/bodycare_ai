@@ -17,6 +17,8 @@ class DoctorsPage extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text('state.errormassege')));
+
+          
         }
       },
       builder: (context, state) {
