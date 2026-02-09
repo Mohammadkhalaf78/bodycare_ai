@@ -188,32 +188,7 @@ class DashBoardPage extends StatelessWidget {
                           },
                         ),
 
-                        ElevatedButton(
-                          onPressed: () {
-                            context.pushNamed('/TestModel');
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorsManeger.darkGreen,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 10,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Text(
-                            'view test model',
-                            style: AppTextStyle.font16whitemedium.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-
-                        //
-                        // const SizedBox(height: 100),
-                      ],
+                        ],
                     ),
                   ),
                 ),
