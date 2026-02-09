@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 class ApiInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvQGdtYWlsLmNvbSIsIl9pZCI6IjY5ODM1NmIzNmJjZTM0OTFjNGUzMDViMiIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzcwMjQyMDIwLCJleHAiOjE3NzAzMjg0MjB9.BFolQ9HNlhaoGo_RFB1TqqjWG6qc3sd16UOPasRck2Q';
+    options.headers['Authorization'] = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvQGdtYWlsLmNvbSIsIl9pZCI6IjY5ODM1NmIzNmJjZTM0OTFjNGUzMDViMiIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzcwNTM5NjI3LCJleHAiOjE3NzA2MjYwMjd9.qIY0VovHnxhT1q12vUgflZDibIyAG9nK7cREkwyajNE';
       //  = CacheHelper().getData(key: ApiKey.token) != null
       //       ? 'FOODAPI ${CacheHelper().getData(key: ApiKey.token)}'
       //       : null;

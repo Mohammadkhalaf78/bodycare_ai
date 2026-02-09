@@ -6,9 +6,12 @@ import 'package:bodycare_ai/features/patients/dashbord/body_diagram.dart';
 import 'package:bodycare_ai/features/patients/dashbord/chat_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/session_details_page.dart';
+import 'package:bodycare_ai/features/patients/dashbord/model/test_model.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctor_details/doctor_datials_page.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctors/doctors_page.dart';
+import 'package:bodycare_ai/features/patients/dashbord/report_details_page.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
+import 'package:bodycare_ai/features/users/data/models/report_model.dart';
 import 'package:bodycare_ai/features/users/data/models/sessions_history.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/role_screen.dart';
 import 'package:bodycare_ai/features/auth_petiant/login_patient_screen.dart';
@@ -20,7 +23,7 @@ class AppRoute {
     switch (settings.name) {
       case Routes.welcomeScreen:
         return MaterialPageRoute(builder: (_) => WelcomeScreen());
-        
+
       case Routes.selectRoleScreen:
         return MaterialPageRoute(builder: (_) => SelectRoleScreen());
 
@@ -37,30 +40,37 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => DashBoardPage());
 
       case Routes.bodyDiagram:
-        return MaterialPageRoute(builder: (_) => BodyDiagram() );
-        
+        return MaterialPageRoute(builder: (_) => BodyDiagram());
+
       case Routes.mainNavigation:
         return MaterialPageRoute(builder: (_) => MainNavigation());
-        
+
       case Routes.doctorsPage:
         return MaterialPageRoute(builder: (_) => DoctorsPage());
 
       case Routes.chatPage:
         return MaterialPageRoute(builder: (_) => ChatPage());
 
+        
+      case Routes.testModel:
+        return MaterialPageRoute(builder: (_) => TestModel());
+
+      case Routes.reportDetailsPage:
+        return MaterialPageRoute(
+          builder: (_) => ReportDetailsPage(reportData: ReportModel()),
+        );
+
       case Routes.doctorDetailsPage:
-      final args = settings.arguments as FormattedDoctor;
-        return MaterialPageRoute(builder: (_) => DoctorDetailsPage(
-          doctorIndex: args,
-        ));
+        final args = settings.arguments as FormattedDoctor;
+        return MaterialPageRoute(
+          builder: (_) => DoctorDetailsPage(doctorIndex: args),
+        );
 
       case Routes.sessionDetails:
         final args = settings.arguments as SessionsHistory;
         return MaterialPageRoute(
-          builder: (_) =>
-              SessionDetailsPage(sessionIndex: args),
+          builder: (_) => SessionDetailsPage(sessionIndex: args),
         );
-
 
       default:
         return MaterialPageRoute(

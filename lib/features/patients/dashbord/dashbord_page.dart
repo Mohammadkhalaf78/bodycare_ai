@@ -188,31 +188,31 @@ class DashBoardPage extends StatelessWidget {
                           },
                         ),
 
-                        // Column(
-                        //   children: [
-                        //     SessionItem(
-                        //       ontap: () => context.pushNamed('/SessionDetails'),
-                        //       title: 'Left Knee Pain',
-                        //       date: 'Aug 19, 2024',
-                        //       status: 'Completed',
-                        //     ),
-                        //     verticalSpace(10),
-                        //     SessionItem(
-                        //       ontap: () => context.pushNamed('/SessionDetails'),
-                        //       title: 'Lower Back Pain',
-                        //       date: 'Aug 14, 2024',
-                        //       status: 'Completed',
-                        //     ),
-                        //     verticalSpace(10),
-                        //     SessionItem(
-                        //       ontap: () => context.pushNamed('/SessionDetails'),
-                        //       title: 'Right Shoulder Pain',
-                        //       date: 'Jul 30, 2024',
-                        //       status: 'Completed',
-                        //     ),
-                        //   ],
-                        // ),
-                        const SizedBox(height: 100),
+                        ElevatedButton(
+                          onPressed: () {
+                            context.pushNamed('/TestModel');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorsManeger.darkGreen,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 18,
+                              vertical: 10,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            'view test model',
+                            style: AppTextStyle.font16whitemedium.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+
+                        //
+                        // const SizedBox(height: 100),
                       ],
                     ),
                   ),

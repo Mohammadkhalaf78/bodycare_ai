@@ -9,6 +9,7 @@ import 'package:bodycare_ai/core/network/api/end_point.dart';
 import 'package:bodycare_ai/core/network/errors/server_exception.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 import 'package:bodycare_ai/features/users/data/models/messeges_model.dart';
+import 'package:bodycare_ai/features/users/data/models/report_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -40,10 +41,23 @@ class UserCubit extends Cubit<UserState> {
   //Sign up confirm password
   TextEditingController confirmPassword = TextEditingController();
 
+  ReportModel? reportModel;
+
   //user state -------------------------------
+
   List<String> selectedModelParts = [];
   void onModelPartSelected(List<String> parts) {
     selectedModelParts = parts;
+
+    // تحديث الرسالة الأولية بمكان الألم المختار
+    final selectedPart = parts.isNotEmpty ? parts[0] : '';
+    chatData = [
+      MessegesModel(
+        messeges: 'I feel pain in the $selectedPart',
+        isSender: true,
+      ),
+    ];
+
     emit(ModelPartSelected(parts));
   }
 
@@ -53,7 +67,7 @@ class UserCubit extends Cubit<UserState> {
   SignInModel? user;
   ChatbootModel? chatboot;
   List<MessegesModel> chatData = [
-    MessegesModel(messeges: 'feel in the back pain', isSender: true),
+    MessegesModel(messeges: 'I feel pain in the ', isSender: true),
   ];
 
   signIn() async {
@@ -140,21 +154,50 @@ class UserCubit extends Cubit<UserState> {
         data: {ApiKey.text: chatBootController.text},
       );
       chatboot = ChatbootModel.fromJson(response);
-      chatData.add(
-        MessegesModel(
-          messeges:
-              chatboot!.aiReply?.error ??
-              chatboot!.aiReply?.content ??
-              'No reply',
-          isSender: false,
-        ),
-      );
-      // 1. أضف رسالة المستخدم
-      // final botText =
-      //     response.aiReply?.content ?? response.aiReply?.error ?? 'No reply';
+      if (chatboot!.aiReply?.report_data != null) {
+        final report = chatboot!.aiReply!.report_data!;
+        reportModel = ReportModel(
+          diagnosis: report.diagnosis,
+          advice: report.advice,
+          immediate_action: report.immediate_action,
+          medication: report.medication,
+          severity: report.severity,
+          specialist: report.specialist,
+          cause: report.cause,
+        );
+        chatData.add(
+          MessegesModel(
+            messeges: chatboot!.aiReply?.error ?? 'No reply',
+            isSender: false,
+          ),
+        );
+      } else if (chatboot!.aiReply?.error != null) {
+        chatData.add(
+          MessegesModel(
+            messeges: chatboot!.aiReply?.error ?? 'No reply',
+            isSender: false,
+          ),
+        );
+      } else if (chatboot!.aiReply?.content != null) {
+        chatData.add(
+          MessegesModel(
+            messeges: chatboot!.aiReply?.content ?? 'No reply',
+            isSender: false,
+          ),
+        );
+      } else {
+        chatData.add(
+          MessegesModel(
+            messeges:
+                chatboot!.aiReply?.error ??
+                chatboot!.aiReply?.content ??
+                'No reply',
+            isSender: false,
+          ),
+        );
+      }
 
-      // 2. أضف رد البوت
-      // chatData.add(MessegesModel(messeges: botText, isSender: false));
+      print(response);
       print('-----------------------------------------------');
       print(chatboot!.aiReply);
       print('-----------------------------------------------');
@@ -165,25 +208,33 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  sendStartMassege() async {
+  sendStartMassege(String selectedPart) async {
     try {
       emit(chatBootLoading());
       final response = await api.post(
         EndPoint.sendMessage,
-        data: {ApiKey.text: 'feel in the back pain '},
+        data: {ApiKey.text: 'I feel pain in the $selectedPart'},
       );
       chatboot = ChatbootModel.fromJson(response);
 
-      final botText = chatboot!.aiReply?.error ?? 'No reply';
-      chatData.add(MessegesModel(messeges: botText, isSender: false));
+      final botText =
+          chatboot?.aiReply?.error ??
+          chatboot?.aiReply?.content ??
+          chatboot?.aiReply?.report_data ??
+          'No reply';
+      chatData.add(
+        MessegesModel(messeges: botText.toString(), isSender: false),
+      );
 
-      print('-----------------------------------------------');
-      print(chatboot!.aiReply);
-      print('-----------------------------------------------');
-      log('ChatBoot Response: ${response}');
       emit(chatBootSuccess());
     } on ServerException catch (e) {
       emit(chatBootFailure(errMessage: e.errModel.errorMessage.toString()));
     }
   }
+}
+
+class EntityData {
+  late final String name;
+  late final int id;
+  // ممكن يكون فيه حاجات تانية
 }

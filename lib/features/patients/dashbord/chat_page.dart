@@ -1,5 +1,6 @@
 import 'package:bodycare_ai/core/cubit/user_cubit.dart';
 import 'package:bodycare_ai/core/cubit/user_state.dart';
+import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
@@ -42,26 +43,30 @@ class ChatPage extends StatelessWidget {
                       ? CircularProgressIndicator(
                           color: ColorsManeger.lightGreen,
                         )
-                      :
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: context.watch<UserCubit>().chatData.length,
-                      itemBuilder: (context, index) {
-                        final message = context.watch<UserCubit>().chatData[index];
-                        return BubbleSpecialThree(
-                          text: message.messeges,
-                          color: (message.isSender)
-                              ? ColorsManeger.darkGreen
-                              : ColorsManeger.wightColor,
-                          isSender: message.isSender,
-                          tail: true,
-                          textStyle: message.isSender
-                              ? AppTextStyle.font16whitemedium
-                              : AppTextStyle.font16BlackMedium,
-                        );
-                      },
-                    ),
-                  ),
+                      : Expanded(
+                          child: ListView.builder(
+                            itemCount: context
+                                .watch<UserCubit>()
+                                .chatData
+                                .length,
+                            itemBuilder: (context, index) {
+                              final message = context
+                                  .watch<UserCubit>()
+                                  .chatData[index];
+                              return BubbleSpecialThree(
+                                text: message.messeges,
+                                color: (message.isSender)
+                                    ? ColorsManeger.darkGreen
+                                    : ColorsManeger.wightColor,
+                                isSender: message.isSender,
+                                tail: true,
+                                textStyle: message.isSender
+                                    ? AppTextStyle.font16whitemedium
+                                    : AppTextStyle.font16BlackMedium,
+                              );
+                            },
+                          ),
+                        ),
 
                   Container(
                     decoration: BoxDecoration(color: ColorsManeger.wightColor),
@@ -103,9 +108,6 @@ class ChatPage extends StatelessWidget {
                                 child: IconButton(
                                   onPressed: () {
                                     context.read<UserCubit>().chatBoot();
-
-                                  
-                                    
                                   },
 
                                   icon: Icon(
@@ -126,8 +128,31 @@ class ChatPage extends StatelessWidget {
                             backgroundColor: ColorsManeger.mainBlue,
 
                             textStyle: AppTextStyle.font14GrayMedium,
-                            onPressed: () {},
-                            buttonText: 'I don\'t know',
+                            onPressed: () {
+                              final cubit = context.read<UserCubit>();
+
+                              if (cubit.reportModel == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('التقرير لم يتم إنشاؤه بعد'),
+                                  ),
+                                );
+                                return;
+                              }
+
+                              context.pushNamed(
+                                '/ReportDetailsPage',
+                                arguments: cubit.reportModel,
+                              );
+
+                              // context.pushNamed(
+                              //   '/ReportDetailsPage',
+                              //   arguments: {
+                              //     context.read<UserCubit>().reportModel,
+                              //   },
+                              // );
+                            },
+                            buttonText: 'go to report',
                           ),
                         ],
                       ),

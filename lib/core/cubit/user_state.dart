@@ -70,4 +70,17 @@ class ModelPartSelected extends UserState {
 }
 
 
+
+
 //------------------------------------
+
+
+abstract class Model3DState {}
+
+class Model3DInitial extends Model3DState {}
+
+class Model3DPartSelected extends Model3DState {
+  final String partName;
+
+  Model3DPartSelected(this.partName);
+}
