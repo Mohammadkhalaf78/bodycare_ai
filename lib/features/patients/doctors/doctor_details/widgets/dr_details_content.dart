@@ -1,6 +1,5 @@
 import 'package:bodycare_ai/core/helpers/spacing.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
-import 'package:bodycare_ai/features/users/data/models/doctors.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

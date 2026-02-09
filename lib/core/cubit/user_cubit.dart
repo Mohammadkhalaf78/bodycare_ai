@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:bodycare_ai/core/cache/cache_helper.dart';
 import 'package:bodycare_ai/core/cubit/user_state.dart';
@@ -86,9 +85,6 @@ class UserCubit extends Cubit<UserState> {
       CacheHelper().saveData(key: ApiKey.token, value: user!.token);
       CacheHelper().saveData(key: ApiKey.id, value: user!.data.id);
       // final decodedToken = JwtDecoder.decode(user!.token); // فك التوكن عشان اشوف الداتا اللي جواه
-      print(' -----------------------------------------------');
-      print(user!.data.id);
-      print(user!.data.name);
 
       emit(SignInSuccess());
     } on ServerException catch (e) {
@@ -99,7 +95,7 @@ class UserCubit extends Cubit<UserState> {
   signUp() async {
     try {
       emit(SignUpLoading());
-      final response = await api.post(
+       await api.post(
         EndPoint.signUp,
         data: {
           ApiKey.name: signUpName.text,
@@ -148,7 +144,7 @@ class UserCubit extends Cubit<UserState> {
     chatBootController.clear();
 
     try {
-      emit(chatBootLoading());
+      emit(ChatBootLoading());
       final response = await api.post(
         EndPoint.sendMessage,
         data: {ApiKey.text: chatBootController.text},
@@ -197,20 +193,15 @@ class UserCubit extends Cubit<UserState> {
         );
       }
 
-      print(response);
-      print('-----------------------------------------------');
-      print(chatboot!.aiReply);
-      print('-----------------------------------------------');
-      log('ChatBoot Response: ${response}');
-      emit(chatBootSuccess());
+      emit(ChatBootSuccess());
     } on ServerException catch (e) {
-      emit(chatBootFailure(errMessage: e.errModel.errorMessage.toString()));
+      emit(ChatBootFailure(errMessage: e.errModel.errorMessage.toString()));
     }
   }
 
   sendStartMassege(String selectedPart) async {
     try {
-      emit(chatBootLoading());
+      emit(ChatBootLoading());
       final response = await api.post(
         EndPoint.sendMessage,
         data: {ApiKey.text: 'I feel pain in the $selectedPart'},
@@ -226,11 +217,25 @@ class UserCubit extends Cubit<UserState> {
         MessegesModel(messeges: botText.toString(), isSender: false),
       );
 
-      emit(chatBootSuccess());
+      emit(ChatBootSuccess());
     } on ServerException catch (e) {
-      emit(chatBootFailure(errMessage: e.errModel.errorMessage.toString()));
+      emit(ChatBootFailure(errMessage: e.errModel.errorMessage.toString()));
     }
   }
+
+ void sendStartMessage(String partName) {
+  // إنشاء رسالة أولية
+  chatData = [
+    MessegesModel(
+      messeges: 'I feel pain in the $partName',
+      isSender: true,
+    ),
+  ];
+
+  // مباشرة نرسلها للشات (لو حابب الـ AI يرد تلقائي)
+  chatBoot();
+  emit(ChatBootSuccess());
+}
 }
 
 class EntityData {

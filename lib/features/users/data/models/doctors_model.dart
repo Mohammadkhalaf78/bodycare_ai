@@ -1,12 +1,3 @@
-// To parse this JSON data, do
-//
-//     final doctorsModel = doctorsModelFromJson(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-
-// String doctorsModelToJson(DoctorsModel data) => json.encode(data.toJson());
 
 class DoctorsModel {
     final List<FormattedDoctor> formattedDoctors;
@@ -19,9 +10,6 @@ class DoctorsModel {
         formattedDoctors: List<FormattedDoctor>.from(json["formattedDoctors"].map((x) => FormattedDoctor.fromJson(x))),
     );
 
-    // Map<String, dynamic> toJson() => {
-    //     "formattedDoctors": List<dynamic>.from(formattedDoctors.map((x) => x.toJson())),
-    // };
 }
 
 class FormattedDoctor {

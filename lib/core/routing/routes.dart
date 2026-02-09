@@ -5,7 +5,6 @@ class Routes {
   static const String signInPatientScreen = '/signInPatientScreen';
   static const String forgotPassword = '/forgotPassword';
   static const String dashBoardPage = '/dashBoardPage';
-  static const String bodyDiagram = '/BodyDiagram';
   static const String sessionDetails = '/SessionDetails';
   static const String mainNavigation = '/mainNavigation';
   static const String doctorsPage = '/DoctorsPage';
@@ -13,5 +12,5 @@ class Routes {
   static const String chatPage = '/ChatPage';
   static const String doctorDetailsPage = '/DoctorDetailsPage';
   static const String reportDetailsPage = '/ReportDetailsPage';
-  static const String testModel = '/TestModel';
+  static const String bodyDiagram = '/BodyDiagram';
 }

@@ -22,7 +22,7 @@ class DoctorsPage extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final cubit = context.read<UserCubit>();
+         context.read<UserCubit>();
         return Scaffold(
           backgroundColor: ColorsManeger.mainBlue,
           appBar: AppBar(

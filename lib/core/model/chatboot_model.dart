@@ -12,8 +12,10 @@ class AiReply {
   final String? content;
   final String? error;
   final String? report;
+  // ignore: non_constant_identifier_names
   final Report_Data? report_data;
 
+  // ignore: non_constant_identifier_names
   AiReply({this.content, this.error, this.report, this.report_data});
 
   factory AiReply.fromJson(Map<String, dynamic> json) {
@@ -29,8 +31,10 @@ class AiReply {
 }
 
 
+// ignore: camel_case_types
 class Report_Data{
   final String? diagnosis;
+  // ignore: non_constant_identifier_names
   final String? immediate_action;
   final String? medication;
   final String? severity;
@@ -39,6 +43,7 @@ class Report_Data{
   final String? cause;
 
 
+  // ignore: non_constant_identifier_names
   Report_Data({this.diagnosis, this.advice, this.immediate_action, this.medication, this.severity, this.specialist, this.cause});
 
   factory Report_Data.fromJson(Map<String, dynamic> json) {

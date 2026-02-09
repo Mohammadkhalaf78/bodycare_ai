@@ -1,5 +1,6 @@
 import 'package:bodycare_ai/core/network/api/api_consumer.dart';
 import 'package:bodycare_ai/core/network/api/api_interceptor.dart';
+// ignore: library_prefixes
 import 'package:bodycare_ai/core/network/end_point/end_point.dart' as EndPoint;
 import 'package:bodycare_ai/core/network/errors/server_exception.dart';
 import 'package:dio/dio.dart';

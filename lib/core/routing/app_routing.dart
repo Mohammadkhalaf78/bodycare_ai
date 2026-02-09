@@ -2,11 +2,10 @@ import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/features/auth_petiant/forgot_password.dart';
 import 'package:bodycare_ai/features/auth_petiant/sign_in_pathent_screen.dart';
 import 'package:bodycare_ai/features/main_navigation.dart';
-import 'package:bodycare_ai/features/patients/dashbord/body_diagram.dart';
 import 'package:bodycare_ai/features/patients/dashbord/chat_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/session_details_page.dart';
-import 'package:bodycare_ai/features/patients/dashbord/model/test_model.dart';
+import 'package:bodycare_ai/features/patients/dashbord/body_diagram/body-diagram.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctor_details/doctor_datials_page.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctors/doctors_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/report_details_page.dart';
@@ -50,11 +49,7 @@ class AppRoute {
 
       case Routes.chatPage:
         return MaterialPageRoute(builder: (_) => ChatPage());
-
-        
-      case Routes.testModel:
-        return MaterialPageRoute(builder: (_) => TestModel());
-
+  
       case Routes.reportDetailsPage:
         return MaterialPageRoute(
           builder: (_) => ReportDetailsPage(reportData: ReportModel()),

@@ -12,18 +12,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatPage extends StatelessWidget {
-  ChatPage({super.key});
+  const ChatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         return BlocConsumer<UserCubit, UserState>(
           listener: (context, state) {
-            // TODO: implement listener
           },
           builder: (context, state) {
             return Scaffold(
@@ -39,7 +37,7 @@ class ChatPage extends StatelessWidget {
               body: Column(
                 children: [
                   verticalSpace(10),
-                  context is chatBootLoading
+                  context is ChatBootLoading
                       ? CircularProgressIndicator(
                           color: ColorsManeger.lightGreen,
                         )

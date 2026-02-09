@@ -1,4 +1,3 @@
-import 'package:bodycare_ai/features/users/data/models/doctors.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 
 class UserState {}
@@ -51,14 +50,14 @@ final class GetUserFailure extends UserState {
   GetUserFailure({required this.errMessage});
 }
 
-final class chatBootSuccess extends UserState {}
+final class ChatBootSuccess extends UserState {}
 
-final class chatBootLoading extends UserState {}
+final class ChatBootLoading extends UserState {}
 
-final class chatBootFailure extends UserState {
+final class ChatBootFailure extends UserState {
   final String errMessage;
 
-  chatBootFailure({required this.errMessage});
+  ChatBootFailure({required this.errMessage});
 }
 
 ///model state -----------------------------------
