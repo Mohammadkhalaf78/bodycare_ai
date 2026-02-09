@@ -154,7 +154,7 @@ class _TestModelState extends State<TestModel> {
                       },
                       selectionColor: [2,2,2,.2],
 
-                      modelPath: 'assets/model/male_body_base_mesh_highpoly (1).glb',
+                      modelPath: 'assets/model/untitled.glb',
                       defaultZoom: 1.7,
                       iblPath: 'assets/env/output_studio_ibl.ktx',
                       skyboxPath: 'assets/env/output_studio_skybox.ktx',
