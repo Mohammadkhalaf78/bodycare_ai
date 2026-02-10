@@ -105,7 +105,7 @@ class DoctorDetailsPage extends StatelessWidget {
                     const SizedBox(height: 8),
                     // النص مقيد بخمس أسطر (maxLines: 5)
                     Text(
-                      doctorIndex.bio,
+                      doctorIndex.bio ?? 'No bio available',
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(

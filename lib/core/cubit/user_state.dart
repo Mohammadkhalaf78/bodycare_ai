@@ -1,3 +1,4 @@
+import 'package:bodycare_ai/core/model/chatboot_model.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 
 class UserState {}
@@ -20,6 +21,11 @@ class GetDoctorsSuccess extends UserState {
   final DoctorsModel doctors;
 
   GetDoctorsSuccess({required this.doctors});
+}
+class GetReportSuccess extends UserState {
+  final ChatbootModel report;
+
+  GetReportSuccess({required this.report});
 }
 
 final class GetDoctorsLoading extends UserState {}

@@ -1,4 +1,3 @@
-
 import 'package:bodycare_ai/core/cache/cache_helper.dart';
 import 'package:bodycare_ai/core/cubit/user_state.dart';
 import 'package:bodycare_ai/core/model/chatboot_model.dart';
@@ -95,7 +94,7 @@ class UserCubit extends Cubit<UserState> {
   signUp() async {
     try {
       emit(SignUpLoading());
-       await api.post(
+      await api.post(
         EndPoint.signUp,
         data: {
           ApiKey.name: signUpName.text,
@@ -151,22 +150,13 @@ class UserCubit extends Cubit<UserState> {
       );
       chatboot = ChatbootModel.fromJson(response);
       if (chatboot!.aiReply?.report_data != null) {
-        final report = chatboot!.aiReply!.report_data!;
-        reportModel = ReportModel(
-          diagnosis: report.diagnosis,
-          advice: report.advice,
-          immediate_action: report.immediate_action,
-          medication: report.medication,
-          severity: report.severity,
-          specialist: report.specialist,
-          cause: report.cause,
-        );
         chatData.add(
           MessegesModel(
             messeges: chatboot!.aiReply?.error ?? 'No reply',
             isSender: false,
           ),
         );
+        emit(GetReportSuccess(report: ChatbootModel.fromJson(response)));
       } else if (chatboot!.aiReply?.error != null) {
         chatData.add(
           MessegesModel(
@@ -223,19 +213,16 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
- void sendStartMessage(String partName) {
-  // إنشاء رسالة أولية
-  chatData = [
-    MessegesModel(
-      messeges: 'I feel pain in the $partName',
-      isSender: true,
-    ),
-  ];
+  void sendStartMessage(String partName) {
+    // إنشاء رسالة أولية
+    chatData = [
+      MessegesModel(messeges: 'I feel pain in the $partName', isSender: true),
+    ];
 
-  // مباشرة نرسلها للشات (لو حابب الـ AI يرد تلقائي)
-  chatBoot();
-  emit(ChatBootSuccess());
-}
+    // مباشرة نرسلها للشات (لو حابب الـ AI يرد تلقائي)
+    chatBoot();
+    emit(ChatBootSuccess());
+  }
 }
 
 class EntityData {

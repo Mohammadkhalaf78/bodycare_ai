@@ -77,9 +77,7 @@ flutter:
   assets:
     - assets/model/
     - assets/env/
-    - assets/web/
     - assets/photo/
-    - assets/model/ecorche_-_anatomy_study.glb
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

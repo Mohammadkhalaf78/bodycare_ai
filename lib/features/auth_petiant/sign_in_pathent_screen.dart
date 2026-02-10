@@ -22,7 +22,7 @@ class SignUpPathientScreen extends StatelessWidget {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          context.pushNamed('/mainNavigation');
+          context.pushNamed('/loginScreen');
         }else if (state is SignUpFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

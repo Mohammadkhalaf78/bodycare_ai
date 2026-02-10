@@ -23,7 +23,7 @@ class BodyDiagram extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Body digram Model'),
+              title: const Text('Body Diagram Model'),
               backgroundColor: ColorsManeger.mainBlue,
             ),
             body: Column(
@@ -32,9 +32,15 @@ class BodyDiagram extends StatelessWidget {
                   child: Stack(
                     children: [
                       Interactive3d(
+                        selectionColor: [
+                          5,
+                          5,
+                          5,
+                          5,
+                        ], // لون التحديد (أخضر في هذا المثال)
                         iblPath: 'assets/env/output_studio_ibl.ktx',
                         skyboxPath: 'assets/env/output_studio_skybox.ktx',
-                        modelPath: 'assets/model/test_humn_body2.glb',
+                        modelPath: 'assets/model/alaa16.glb',
                         defaultZoom: 1.7,
                         onSelectionChanged: (entities) {
                           if (entities.isEmpty) return;

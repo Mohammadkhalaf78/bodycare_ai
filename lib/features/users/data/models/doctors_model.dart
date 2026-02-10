@@ -17,18 +17,18 @@ class FormattedDoctor {
     final String name;
     final String email;
     final String specialty;
-    final String imageUrl;
+    final String? imageUrl;
     final List<double> coordinates;
-    final String bio;
+    final String? bio;
 
     FormattedDoctor({
         required this.id,
         required this.name,
         required this.email,
         required this.specialty,
-        required this.imageUrl,
+         this.imageUrl,
         required this.coordinates,
-        required this.bio,
+         this.bio,
     });
 
     factory FormattedDoctor.fromJson(Map<String, dynamic> json) => FormattedDoctor(

@@ -6,8 +6,19 @@ import 'package:bodycare_ai/features/patients/widgets/doctor_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DoctorsPage extends StatelessWidget {
+class DoctorsPage extends StatefulWidget {
   const DoctorsPage({super.key});
+
+  @override
+  State<DoctorsPage> createState() => _DoctorsPageState();
+}
+
+class _DoctorsPageState extends State<DoctorsPage> {
+@override
+  void initState() {
+    super.initState();
+    context.read<UserCubit>().getAllDoctors();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +61,11 @@ class DoctorsPage extends StatelessWidget {
                     },
                   ),
                 )
-              : Container()
+              : Container(
+                  child: Center(
+                    child: Text('No doctors available'),
+                  ),
+              )
         );
       },
     );
