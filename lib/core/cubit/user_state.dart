@@ -22,12 +22,6 @@ class GetDoctorsSuccess extends UserState {
 
   GetDoctorsSuccess({required this.doctors});
 }
-class GetReportSuccess extends UserState {
-  final ChatbootModel report;
-
-  GetReportSuccess({required this.report});
-}
-
 final class GetDoctorsLoading extends UserState {}
 
 final class GetDoctorsFailure extends UserState {
@@ -55,6 +49,13 @@ final class GetUserFailure extends UserState {
 
   GetUserFailure({required this.errMessage});
 }
+class GetReportSuccess extends UserState {
+  final ChatbootModel report;
+
+  GetReportSuccess({required this.report});
+}
+
+
 
 final class ChatBootSuccess extends UserState {}
 

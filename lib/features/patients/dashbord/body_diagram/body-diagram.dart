@@ -40,7 +40,7 @@ class BodyDiagram extends StatelessWidget {
                         ], // لون التحديد (أخضر في هذا المثال)
                         iblPath: 'assets/env/output_studio_ibl.ktx',
                         skyboxPath: 'assets/env/output_studio_skybox.ktx',
-                        modelPath: 'assets/model/alaa16.glb',
+                        modelPath: 'assets/model/addNames.glb',
                         defaultZoom: 1.7,
                         onSelectionChanged: (entities) {
                           if (entities.isEmpty) return;

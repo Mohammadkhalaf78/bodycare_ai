@@ -134,6 +134,7 @@ class UserCubit extends Cubit<UserState> {
   }
 
   chatBoot() async {
+    emit(ChatBootLoading());
     if (chatBootController.text.isEmpty) return;
 
     // 1️⃣ رسالة المستخدم
@@ -194,7 +195,7 @@ class UserCubit extends Cubit<UserState> {
       emit(ChatBootLoading());
       final response = await api.post(
         EndPoint.sendMessage,
-        data: {ApiKey.text: 'I feel pain in the $selectedPart'},
+        data: {ApiKey.text: 'اشعر بألم في البطن'},
       );
       chatboot = ChatbootModel.fromJson(response);
 

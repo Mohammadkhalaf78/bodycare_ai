@@ -10,7 +10,7 @@ import 'package:bodycare_ai/features/patients/doctors/doctor_details/doctor_dati
 import 'package:bodycare_ai/features/patients/doctors/doctors/doctors_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/report_details_page.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
-import 'package:bodycare_ai/features/users/data/models/report_model.dart';
+import 'package:bodycare_ai/core/model/chatboot_model.dart';
 import 'package:bodycare_ai/features/users/data/models/sessions_history.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/role_screen.dart';
 import 'package:bodycare_ai/features/auth_petiant/login_patient_screen.dart';
@@ -51,8 +51,9 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => ChatPage());
   
       case Routes.reportDetailsPage:
+        final args = settings.arguments as ChatbootModel;
         return MaterialPageRoute(
-          builder: (_) => ReportDetailsPage(reportData: ReportModel()),
+          builder: (_) => ReportDetailsPage(reportData: args),
         );
 
       case Routes.doctorDetailsPage:

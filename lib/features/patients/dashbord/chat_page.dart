@@ -2,6 +2,7 @@ import 'package:bodycare_ai/core/cubit/user_cubit.dart';
 import 'package:bodycare_ai/core/cubit/user_state.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
+import 'package:bodycare_ai/core/model/chatboot_model.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
@@ -22,6 +23,18 @@ class ChatPage extends StatelessWidget {
       builder: (context, state) {
         return BlocConsumer<UserCubit, UserState>(
           listener: (context, state) {
+            if (state is GetReportSuccess){
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('تم إنشاء التقرير بنجاح'),
+                ),
+              
+              );
+              context.pushNamed(
+                '/ReportDetailsPage',
+                arguments: ChatbootModel(),
+              );
+            }
           },
           builder: (context, state) {
             return Scaffold(
@@ -36,6 +49,16 @@ class ChatPage extends StatelessWidget {
               ),
               body: Column(
                 children: [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: ColorsManeger.lightGreen,
+                    child: const Icon(
+                      Icons.health_and_safety,
+                      color: ColorsManeger.wightColor,
+                      size: 40,
+                    ),
+
+                  ),
                   verticalSpace(10),
                   context is ChatBootLoading
                       ? CircularProgressIndicator(
@@ -129,7 +152,7 @@ class ChatPage extends StatelessWidget {
                             onPressed: () {
                               final cubit = context.read<UserCubit>();
 
-                              if (cubit.reportModel == null) {
+                              if (cubit.chatboot?.aiReply?.report_data == null) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('التقرير لم يتم إنشاؤه بعد'),
@@ -140,7 +163,7 @@ class ChatPage extends StatelessWidget {
 
                               context.pushNamed(
                                 '/ReportDetailsPage',
-                                arguments: cubit.reportModel,
+                                arguments: cubit.chatboot,
                               );
 
                               // context.pushNamed(
