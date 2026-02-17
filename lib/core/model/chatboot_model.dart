@@ -30,30 +30,38 @@ class AiReply {
   }
 }
 
-
 // ignore: camel_case_types
-class Report_Data{
+class Report_Data {
   final String? diagnosis;
-  // ignore: non_constant_identifier_names
   final String? immediate_action;
-  final String? medication;
+  final String? self_care;
   final String? severity;
   final String? specialist;
   final String? advice;
+  final String? when_to_seek_help;
   final String? cause;
 
-
   // ignore: non_constant_identifier_names
-  Report_Data({this.diagnosis, this.advice, this.immediate_action, this.medication, this.severity, this.specialist, this.cause});
+  Report_Data({
+    this.self_care,
+    this.when_to_seek_help,
+    this.diagnosis,
+    this.advice,
+    this.immediate_action,
+    this.severity,
+    this.specialist,
+    this.cause,
+  });
 
   factory Report_Data.fromJson(Map<String, dynamic> json) {
     return Report_Data(
       diagnosis: json['diagnosis']?.toString(),
-      advice: json['advice']?.toString(),
       immediate_action: json['immediate_action']?.toString(),
-      medication: json['medication']?.toString(), 
+      self_care: json['self_care']?.toString(),
       severity: json['severity']?.toString(),
       specialist: json['specialist']?.toString(),
+      advice: json['advice']?.toString(),
+      when_to_seek_help: json['when_to_seek_help']?.toString(),
       cause: json['cause']?.toString(),
     );
   }

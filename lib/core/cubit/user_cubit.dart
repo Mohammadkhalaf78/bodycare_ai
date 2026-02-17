@@ -82,9 +82,7 @@ class UserCubit extends Cubit<UserState> {
         response,
       ); //كدا انا حطيت الداتا كلها في اليوزر
       CacheHelper().saveData(key: ApiKey.token, value: user!.token);
-      CacheHelper().saveData(key: ApiKey.id, value: user!.data.id);
-      // final decodedToken = JwtDecoder.decode(user!.token); // فك التوكن عشان اشوف الداتا اللي جواه
-
+      CacheHelper().saveData(key: ApiKey.name, value: user!.data.name);
       emit(SignInSuccess());
     } on ServerException catch (e) {
       emit(SignInFailure(errMessage: e.errModel.errorMessage.toString()));
@@ -158,6 +156,7 @@ class UserCubit extends Cubit<UserState> {
           ),
         );
         emit(GetReportSuccess(report: ChatbootModel.fromJson(response)));
+        CacheHelper().saveData(key: ApiKey.reportData, value: chatboot!.aiReply?.report_data);
       } else if (chatboot!.aiReply?.error != null) {
         chatData.add(
           MessegesModel(
@@ -195,7 +194,7 @@ class UserCubit extends Cubit<UserState> {
       emit(ChatBootLoading());
       final response = await api.post(
         EndPoint.sendMessage,
-        data: {ApiKey.text: 'اشعر بألم في البطن'},
+        data: {ApiKey.text: 'I feel pain in the $selectedPart'},
       );
       chatboot = ChatbootModel.fromJson(response);
 

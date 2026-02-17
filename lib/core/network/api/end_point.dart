@@ -26,4 +26,5 @@ class ApiKey {
   static String address = 'address';
   static String data = 'data';
   static String text = 'text';
+  static String reportData = 'reportData';
 }

@@ -33,14 +33,14 @@ class BodyDiagram extends StatelessWidget {
                     children: [
                       Interactive3d(
                         selectionColor: [
-                          5,
-                          5,
-                          5,
-                          5,
+                          3,
+                          1,
+                          1,
+                          0,
                         ], // لون التحديد (أخضر في هذا المثال)
                         iblPath: 'assets/env/output_studio_ibl.ktx',
                         skyboxPath: 'assets/env/output_studio_skybox.ktx',
-                        modelPath: 'assets/model/addNames.glb',
+                        modelPath: 'assets/model/alaa2.glb',
                         defaultZoom: 1.7,
                         onSelectionChanged: (entities) {
                           if (entities.isEmpty) return;
@@ -64,7 +64,7 @@ class BodyDiagram extends StatelessWidget {
                               .lastTappedPart;
                           if (selectedPart == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('اختر جزء أولا')),
+                              const SnackBar(content: Text('Please select a part of the body first.')),
                             );
                             return;
                           }

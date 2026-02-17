@@ -35,10 +35,11 @@ class ReportDetailsPage extends StatelessWidget {
                   icon: Icons.warning_amber_rounded,
                 ),
                 ReportItem(
-                  title: 'Medication',
-                  value: reportData.aiReply?.report_data?.medication,
-                  icon: Icons.medication,
+                  title: 'Self Care',
+                  value: reportData.aiReply?.report_data?.self_care,
+                  icon: Icons.healing,
                 ),
+
                 ReportItem(
                   title: 'Severity',
                   value: reportData.aiReply?.report_data?.severity,

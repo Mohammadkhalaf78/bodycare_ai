@@ -1,5 +1,8 @@
+import 'package:bodycare_ai/core/cache/cache_helper.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
+import 'package:bodycare_ai/core/network/api/end_point.dart';
+import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
@@ -26,7 +29,10 @@ class ProfilePage extends StatelessWidget {
                 backgroundImage: AssetImage('assets/photo/smaling_avatar.jpg'),
               ),
               verticalSpace(20),
-              Text('Mohamed', style: AppTextStyle.font18BlackBold),
+              Text(
+                '${CacheHelper().getData(key: ApiKey.name)}',
+                style: AppTextStyle.font18BlackBold,
+              ),
               verticalSpace(2),
               Text('mohae@gmail.com', style: AppTextStyle.font12Grayregular),
               verticalSpace(20),
@@ -42,7 +48,14 @@ class ProfilePage extends StatelessWidget {
                 title: 'Saved Sessions',
                 icon: Icons.bookmark_border,
                 onTap: () {
-                  // Handle Edit Profile tap
+                  context.pushNamed(Routes.historyPage);
+                },
+              ),
+              verticalSpace(15),
+              SattingsButton(
+                title: 'Settings',
+                icon: Icons.settings_outlined,
+                onTap: () {
                 },
               ),
               verticalSpace(40),
@@ -50,7 +63,7 @@ class ProfilePage extends StatelessWidget {
               AppTextButton(
                 textStyle: AppTextStyle.font14RedSemiBold,
                 onPressed: () {
-                  context.pushReplacementNamed('/loginScreen');
+                  context.pushReplacementNamed(Routes.welcomeScreen);
                 },
                 buttonText: 'Logout',
                 backgroundColor: ColorsManeger.mainBlue,

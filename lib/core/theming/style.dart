@@ -14,8 +14,18 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.bold,
     color: ColorsManeger.darkGreen,
   );
+  static TextStyle font25BlackBold = TextStyle(
+    fontSize: 25.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManeger.dark,
+  );
   static TextStyle font18BlackBold = TextStyle(
     fontSize: 18.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: ColorsManeger.dark,
+  );
+  static TextStyle font20BlackBold = TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeightHelper.bold,
     color: ColorsManeger.dark,
   );
@@ -111,4 +121,6 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManeger.wightColor,
   );
+
+  static TextStyle? get font12WhiteRegular => null;
 }

@@ -1,7 +1,10 @@
+import 'package:bodycare_ai/core/cache/cache_helper.dart';
 import 'package:bodycare_ai/core/cubit/user_cubit.dart';
 import 'package:bodycare_ai/core/cubit/user_state.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
+import 'package:bodycare_ai/core/network/api/end_point.dart';
+import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/features/patients/widgets/session_item.dart';
@@ -51,7 +54,7 @@ class DashBoardPage extends StatelessWidget {
                             ),
                             SizedBox(height: 2),
                             Text(
-                              'mohamed',
+                              '${CacheHelper().getData(key: ApiKey.name)} 👋',
                               // '${context.read<UserCubit>().user!.data.name} 👋',
                               style: AppTextStyle.font18BlackBold,
                             ),
@@ -172,13 +175,13 @@ class DashBoardPage extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: sessionsData.length,
+                          itemCount: 3,
                           itemBuilder: (contex, index) {
                             return SessionItem(
                               ontap: () {
                                 context.pushNamed(
-                                  '/SessionDetails',
-                                  arguments: sessionsData[index],
+                                  Routes.historyPage,
+                                
                                 );
                               },
                               title: sessionsData[index].title,

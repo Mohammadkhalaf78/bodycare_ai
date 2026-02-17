@@ -3,6 +3,7 @@ import 'package:bodycare_ai/core/cubit/user_state.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
 import 'package:bodycare_ai/core/model/chatboot_model.dart';
+import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
@@ -31,7 +32,7 @@ class ChatPage extends StatelessWidget {
               
               );
               context.pushNamed(
-                '/ReportDetailsPage',
+                Routes.medicalDiagramReport,
                 arguments: ChatbootModel(),
               );
             }
@@ -152,17 +153,17 @@ class ChatPage extends StatelessWidget {
                             onPressed: () {
                               final cubit = context.read<UserCubit>();
 
-                              if (cubit.chatboot?.aiReply?.report_data == null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('التقرير لم يتم إنشاؤه بعد'),
-                                  ),
-                                );
-                                return;
-                              }
+                              // if (cubit.chatboot?.aiReply?.report_data == null) {
+                              //   ScaffoldMessenger.of(context).showSnackBar(
+                              //     const SnackBar(
+                              //       content: Text('التقرير لم يتم إنشاؤه بعد'),
+                              //     ),
+                              //   );
+                              //   return;
+                              // }
 
                               context.pushNamed(
-                                '/ReportDetailsPage',
+                                Routes.medicalDiagramReport,
                                 arguments: cubit.chatboot,
                               );
 
