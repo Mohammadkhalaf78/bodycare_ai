@@ -1,6 +1,10 @@
 import 'package:bodycare_ai/core/routing/routes.dart';
-import 'package:bodycare_ai/features/auth_petiant/forgot_password.dart';
-import 'package:bodycare_ai/features/auth_petiant/sign_in_pathent_screen.dart';
+import 'package:bodycare_ai/features/auth/forgot_password_patient.dart';
+import 'package:bodycare_ai/features/auth/login_doctor/login_doctor_page.dart';
+import 'package:bodycare_ai/features/auth/sign_in_pathent_screen.dart';
+import 'package:bodycare_ai/features/auth/sign_up_doctor/registration_received_page.dart';
+import 'package:bodycare_ai/features/auth/sign_up_doctor/sign_up_doctor_page.dart';
+import 'package:bodycare_ai/features/doctor_profile/home_screen/home_screen_page.dart';
 import 'package:bodycare_ai/features/main_navigation.dart';
 import 'package:bodycare_ai/features/patients/dashbord/Report%20&%20History/history.page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/Report%20&%20History/medical_diagram_report.dart';
@@ -15,7 +19,7 @@ import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 import 'package:bodycare_ai/core/model/chatboot_model.dart';
 import 'package:bodycare_ai/features/users/data/models/sessions_history.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/role_screen.dart';
-import 'package:bodycare_ai/features/auth_petiant/login_patient_screen.dart';
+import 'package:bodycare_ai/features/auth/login_patient_screen.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +37,15 @@ class AppRoute {
 
       case Routes.signInPatientScreen:
         return MaterialPageRoute(builder: (_) => SignUpPathientScreen());
+
+      case Routes.loginDoctorScreen:
+        return MaterialPageRoute(builder: (_) => LoginDoctorScreen());
+
+      case Routes.signUpDoctorPage:
+        return MaterialPageRoute(builder: (_) => SignUpDoctorPage());
+
+      case Routes.registrationReceivedPage:
+        return MaterialPageRoute(builder: (_) => RegistrationReceivedPage());
 
       case Routes.forgotPassword:
         return MaterialPageRoute(builder: (_) => ForgotPassword());
@@ -54,8 +67,7 @@ class AppRoute {
 
       case Routes.historyPage:
         return MaterialPageRoute(builder: (_) => HistoryPage());
-  
-    
+
       case Routes.medicalDiagramReport:
         return MaterialPageRoute(builder: (_) => MedicalDiagramReport());
 
@@ -76,6 +88,10 @@ class AppRoute {
         return MaterialPageRoute(
           builder: (_) => SessionDetailsPage(sessionIndex: args),
         );
+
+      // doctor routes
+      case Routes.homeScreenDoctorPage:
+        return MaterialPageRoute(builder: (_) => HomeScreenDoctorPage());
 
       default:
         return MaterialPageRoute(

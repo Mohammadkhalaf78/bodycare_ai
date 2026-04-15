@@ -24,7 +24,7 @@ class BodyCare extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
           ),
           debugShowCheckedModeBanner: false,
-          initialRoute: context.read<UserCubit>().isLoggedIn == true ? Routes.welcomeScreen : Routes.mainNavigation,
+          initialRoute: context.read<UserCubit>().isLoggedIn() ? Routes.mainNavigation : Routes.welcomeScreen,
         
           onGenerateRoute: appRoute.generateRoute,
         );

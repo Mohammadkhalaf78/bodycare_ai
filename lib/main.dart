@@ -1,4 +1,5 @@
 import 'package:bodycare_ai/core/cache/cache_helper.dart';
+import 'package:bodycare_ai/core/cubit/doctor_cubit.dart';
 import 'package:bodycare_ai/core/cubit/user_cubit.dart';
 import 'package:bodycare_ai/core/network/api/dio_consumer.dart';
 import 'package:bodycare_ai/core/network/helpers.dart/dio_helper.dart';
@@ -18,8 +19,15 @@ Future<void> main() async {
   await DioHelper.init();
 
   runApp(
-    BlocProvider(
-      create: (context) => UserCubit(DioConsumer(dio: Dio())),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DoctorCubit(DioConsumer(dio: Dio())),
+        ),
+        BlocProvider(
+          create: (context) => UserCubit(DioConsumer(dio: Dio())),
+        ),
+      ],
       child: BodyCare(appRoute: AppRoute()),
     ),
   );

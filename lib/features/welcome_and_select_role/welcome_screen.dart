@@ -27,6 +27,7 @@ class WelcomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 40),
+    
 
               // Logo
               Logo(),
@@ -36,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
               Text(
                 "Welcome to BodyCare AI",
                 textAlign: TextAlign.center,
-                style: AppTextStyle.font32BlackBold,
+                style: AppTextStyle.font25BlackBold,
               ),
 
               const SizedBox(height: 16),

@@ -4,6 +4,7 @@ class EndPoint {
   static String signUp = "/api/user/signUp";
   static String getDoctors = '/api/doctor';
   static String sendMessage = '/api/aichat/message';
+  static String signUpDr = '/api/doctor/';
   static String getUserDataEndPoint(id) {
     return "user/get-user/$id";
   }

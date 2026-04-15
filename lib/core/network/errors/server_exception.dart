@@ -5,6 +5,8 @@ class ServerException implements Exception {
   final ErrorModel errModel;
 
   ServerException({required this.errModel});
+
+  get errorMessage => null;
 }
 
 void handleDioExceptions(DioException e) {

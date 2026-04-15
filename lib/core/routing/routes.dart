@@ -15,5 +15,11 @@ class Routes {
   static const String bodyDiagram = '/BodyDiagram';
   static const String medicalDiagramReport = '/MedicalDiagramReport';
   static const String historyPage = '/HistoryPage';
+  static const String loginDoctorScreen = '/LoginDoctorScreen';
+  static const String signUpDoctorPage = '/SignUpDoctorPage';
+  static const String registrationReceivedPage = '/RegistrationReceivedPage';
+
+  //doctor routes
+  static const String homeScreenDoctorPage = '/HomeScreenDoctorPage';
 
 }
