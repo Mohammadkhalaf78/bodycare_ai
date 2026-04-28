@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:bodycare_ai/core/network/api/api_consumer.dart';
@@ -36,11 +35,18 @@ class DoctorCubit extends Cubit<DoctorState> {
         'phone': doctorRegistraionPhone.value.international,
         'password': doctorRegistraionPassword.text,
         'specialty': doctorSpecialty,
+        'age': 30,
+        'gender': 'male',
+        'address': ['Cairo, Maadi, Street 9'],
+        'role': 'doctor',
+        'coordinates': [31.2357, 30.0444],
+        'bio': 'Experienced doctor in the field of cardiology.'
+        
       },
     );
     emit(DoctorSignUpSuccess());
 } on ServerException catch (e) {
-  emit(DoctorSignUpFailed(errorMessage: e.errModel.errorMessage.toString()));
+  emit(DoctorSignUpFailed(errorMessage: e.errModel.message.toString()));
 }
   }
 }

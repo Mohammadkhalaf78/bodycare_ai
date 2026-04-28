@@ -28,44 +28,7 @@ class DashBoardPage extends StatelessWidget {
             child: Column(
               children: [
                 // Top area (avatar + greeting + small icons)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 18,
-                    vertical: 14,
-                  ),
-                  child: Row(
-                    children: [
-                      // avatar
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundImage: AssetImage(
-                          'assets/photo/smaling_avatar.jpg',
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      // greeting
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hello,',
-                              style: AppTextStyle.font14GrayMedium,
-                            ),
-                            SizedBox(height: 2),
-                            Text(
-                              '${CacheHelper().getData(key: ApiKey.name)} 👋',
-                              // '${context.read<UserCubit>().user!.data.name} 👋',
-                              style: AppTextStyle.font18BlackBold,
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // small icons (calendar / notifications)
-                    ],
-                  ),
-                ),
+                personal_petiant_Details(),
 
                 // content scroll area
                 Expanded(
@@ -201,6 +164,54 @@ class DashBoardPage extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class personal_petiant_Details extends StatelessWidget {
+  const personal_petiant_Details({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 18,
+        vertical: 14,
+      ),
+      child: Row(
+        children: [
+          // avatar
+          CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage(
+              'assets/photo/smaling_avatar.jpg',
+            ),
+          ),
+          const SizedBox(width: 12),
+          // greeting
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hello,',
+                  style: AppTextStyle.font14GrayMedium,
+                ),
+                SizedBox(height: 2),
+                Text(
+                  'mohamed👋',
+                  // '${context.read<UserCubit>().user!.data.name} 👋',
+                  style: AppTextStyle.font18BlackBold,
+                ),
+              ],
+            ),
+          ),
+    
+          // small icons (calendar / notifications)
+        ],
       ),
     );
   }

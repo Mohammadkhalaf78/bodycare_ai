@@ -139,21 +139,12 @@ class LoginPatientScreen extends StatelessWidget {
                             : AppTextButton(
                                 textStyle: AppTextStyle.font16GrayRegular,
                                 onPressed: () {
-                                  //   if (context.read()<UserCubit>().signInEmail.text.isEmpty ||
-                                  //       context
-                                  //           .read<UserCubit>()
-                                  //           .signInPassword
-                                  //           .text
-                                  //           .isEmpty) {
-                                  //     ScaffoldMessenger.of(context)
-                                  //         .showSnackBar(
-                                  //       const SnackBar(
-                                  //         content: Text(
-                                  //             'Please fill in all fields'),
-                                  //       ),
-                                  //     );
-                                  //     return;
-                                  //   }
+
+
+
+                              // context.read<UserCubit>().signIn();
+                                  
+                                
                                   context.read<UserCubit>().signIn();
                                 },
                                 buttonText: 'Sign in ',

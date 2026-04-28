@@ -42,6 +42,20 @@ class UserCubit extends Cubit<UserState> {
   ReportModel? reportModel;
 
   //user state -------------------------------
+  //   testSignIn() async {
+  //   try {
+  //     emit(UserInitial());
+  //     final response = await api.post(
+  //       EndPoint.signIn,
+  //       data: {ApiKey.email: 's@gmail.com', ApiKey.password: '12345678'},
+  //     );
+  //     emit(GetUserSuccess());
+  //     print('response: $response');
+  //   } on Exception catch (e) {
+  //     print(e.toString());
+  //     emit(GetUserFailure(errMessage: e.toString()));
+  //   }
+  // }
 
   List<String> selectedModelParts = [];
   void onModelPartSelected(List<String> parts) {
@@ -78,14 +92,15 @@ class UserCubit extends Cubit<UserState> {
           ApiKey.password: signInPassword.text,
         },
       );
-      user = SignInModel.fromJson(
-        response,
-      ); //كدا انا حطيت الداتا كلها في اليوزر
+      print('response: $response');
+      user = SignInModel.fromJson(response);
+      final decodedToken = JwtDecoder.decode(user!.token);
+      print('Decoded Token: $decodedToken');
+      //كدا انا حطيت الداتا كلها في اليوزر
       CacheHelper().saveData(key: ApiKey.token, value: user!.token);
-      CacheHelper().saveData(key: ApiKey.name, value: user!.data.name);
       emit(SignInSuccess());
     } on ServerException catch (e) {
-      emit(SignInFailure(errMessage: e.errModel.errorMessage.toString()));
+      emit(SignInFailure(errMessage: e.errModel.message.toString()));
     }
   }
 
@@ -107,7 +122,7 @@ class UserCubit extends Cubit<UserState> {
       );
       emit(SignUpSuccess());
     } on ServerException catch (e) {
-      emit(SignUpFailure(errMessage: e.errModel.status.toString()));
+      emit(SignUpFailure(errMessage: e.errModel.message.toString()));
     }
   }
 
@@ -127,7 +142,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(GetDoctorsSuccess(doctors: DoctorsModel.fromJson(response)));
     } on ServerException catch (e) {
-      emit(GetDoctorsFailure(errMessage: e.errModel.errorMessage.toString()));
+      emit(GetDoctorsFailure(errMessage: e.errModel.message.toString()));
     }
   }
 
@@ -156,7 +171,10 @@ class UserCubit extends Cubit<UserState> {
           ),
         );
         emit(GetReportSuccess(report: ChatbootModel.fromJson(response)));
-        CacheHelper().saveData(key: ApiKey.reportData, value: chatboot!.aiReply?.report_data);
+        CacheHelper().saveData(
+          key: ApiKey.reportData,
+          value: chatboot!.aiReply?.report_data,
+        );
       } else if (chatboot!.aiReply?.error != null) {
         chatData.add(
           MessegesModel(
@@ -185,7 +203,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(ChatBootSuccess());
     } on ServerException catch (e) {
-      emit(ChatBootFailure(errMessage: e.errModel.errorMessage.toString()));
+      emit(ChatBootFailure(errMessage: e.errModel.message.toString()));
     }
   }
 
@@ -209,7 +227,7 @@ class UserCubit extends Cubit<UserState> {
 
       emit(ChatBootSuccess());
     } on ServerException catch (e) {
-      emit(ChatBootFailure(errMessage: e.errModel.errorMessage.toString()));
+      emit(ChatBootFailure(errMessage: e.errModel.message.toString()));
     }
   }
 

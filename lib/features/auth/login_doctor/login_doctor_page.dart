@@ -8,6 +8,7 @@ import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:bodycare_ai/core/widgets/app_text_form_filed.dart';
 import 'package:bodycare_ai/core/widgets/logo.dart';
+import 'package:bodycare_ai/features/auth/login_doctor/cubit/login_doctor_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,8 +18,23 @@ class LoginDoctorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
-      listener: (context, state) {},
+    return BlocConsumer<LoginDoctorCubit, LoginDoctorState>(
+      listener: (context, state) {
+        if (state is LoginDoctorLoading) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Logging in...')));
+        } else if (state is LoginDoctorSuccess) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Login successful!')));
+          context.pushNamed(Routes.drMainNavigation);
+        } else if (state is LoginDoctorError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login failed: ${state.errorMessage}')),
+          );
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: ColorsManeger.mainBlue,
@@ -79,7 +95,9 @@ class LoginDoctorScreen extends StatelessWidget {
                         // Email input
                         AppTextFormFiled(
                           hintText: 'Enter your email',
-                          controller: context.read<UserCubit>().signInEmail,
+                          controller: context
+                              .read<LoginDoctorCubit>()
+                              .doctorLoginEmail,
                         ),
                         const SizedBox(height: 14),
 
@@ -90,30 +108,18 @@ class LoginDoctorScreen extends StatelessWidget {
                         AppTextFormFiled(
                           hintText: 'Enter your password',
                           isObscureText: true,
-                          controller: context.read<UserCubit>().signInPassword,
+                          controller: context
+                              .read<LoginDoctorCubit>()
+                              .doctorLoginPassword,
                         ),
                         const SizedBox(height: 8),
                         // Forgot password (aligned right)
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: const Size(0, 0),
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            ),
-                            child: Text(
-                              'Forgot Password?',
-                              style: AppTextStyle.font14DarkGreenSemiBold,
-                            ),
-                          ),
-                        ),
+                        forget_password_widget(),
 
                         verticalSpace(12),
 
                         // Sign In button
-                        state is SignInLoading
+                        state is LoginDoctorLoading
                             ? Center(
                                 child: CircularProgressIndicator(
                                   color: ColorsManeger.mainBlue,
@@ -122,9 +128,7 @@ class LoginDoctorScreen extends StatelessWidget {
                             : AppTextButton(
                                 textStyle: AppTextStyle.font16GrayRegular,
                                 onPressed: () {
-                                  context.pushNamed(
-                                    Routes.homeScreenDoctorPage,
-                                  );
+                                  context.read<LoginDoctorCubit>().login();
                                 },
                                 buttonText: 'Sign in ',
                               ),
@@ -157,6 +161,29 @@ class LoginDoctorScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class forget_password_widget extends StatelessWidget {
+  const forget_password_widget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: const Size(0, 0),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        child: Text(
+          'Forgot Password?',
+          style: AppTextStyle.font14DarkGreenSemiBold,
+        ),
+      ),
     );
   }
 }

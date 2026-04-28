@@ -1,13 +1,11 @@
 import 'package:bodycare_ai/core/network/api/end_point.dart';
 class ErrorModel {
-  final String status;
-  final String? errorMessage;
+  final String message;
 
-  ErrorModel({required this.status,required this.errorMessage});
+  ErrorModel({required this.message});
   factory ErrorModel.fromJson(Map<String, dynamic> jsonData) {
     return ErrorModel(
-      status: jsonData[ApiKey.status],
-      errorMessage: jsonData[ApiKey.errorMessage],
+      message: jsonData[ApiKey.message],
     );
   }
 }

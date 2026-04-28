@@ -18,6 +18,13 @@ class Routes {
   static const String loginDoctorScreen = '/LoginDoctorScreen';
   static const String signUpDoctorPage = '/SignUpDoctorPage';
   static const String registrationReceivedPage = '/RegistrationReceivedPage';
+  static const String mainNavDoctor = '/MainNavDoctor';
+  static const String drMainNavigation = '/DrMainNavigation';
+  static const String appointmentsScreen = '/AppointmentsScreen';
+  static const String profileScreen = '/ProfileScreen';
+  static const String caseDatailsScreen = '/CaseDatailsScreen';
+  static const String appointmentDetailsScreen = '/AppointmentDetailsScreen';
+
 
   //doctor routes
   static const String homeScreenDoctorPage = '/HomeScreenDoctorPage';

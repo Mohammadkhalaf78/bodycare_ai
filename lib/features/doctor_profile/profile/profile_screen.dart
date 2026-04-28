@@ -1,7 +1,5 @@
-import 'package:bodycare_ai/core/cache/cache_helper.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/helpers/spacing.dart';
-import 'package:bodycare_ai/core/network/api/end_point.dart';
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
@@ -9,16 +7,19 @@ import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:bodycare_ai/features/patients/widgets/sattings_button.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsManeger.mainBlue,
-      appBar: AppBar(title: Text('Profile Page')),
-      body:
-       Center(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: ColorsManeger.mainBlue,
+        title: Text('Profile', style: AppTextStyle.font25BlackBold),
+      ),
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.all(22),
           child: Column(
@@ -27,18 +28,14 @@ class ProfilePage extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/photo/smaling_avatar.jpg'),
+                backgroundImage: AssetImage('assets/photo/Doctor Smith profile picture.png'),
               ),
               verticalSpace(20),
-              Text(
-                '${CacheHelper().getData(key: ApiKey.name)}',
-                style: AppTextStyle.font18BlackBold,
-              ),
-              verticalSpace(2),
-              Text('mohae@gmail.com', style: AppTextStyle.font12Grayregular),
+              Text('Dr. Mohamed Ali', style: AppTextStyle.font20BlackBold),
+              Text('Cardiologist', style: AppTextStyle.font16GreenRegular),
               verticalSpace(20),
               SattingsButton(
-                title: 'Edit Profile',
+                title: 'Personal Information',
                 icon: Icons.person_outline,
                 onTap: () {
                   // Handle Edit Profile tap
@@ -46,25 +43,22 @@ class ProfilePage extends StatelessWidget {
               ),
               verticalSpace(15),
               SattingsButton(
-                title: 'Saved Sessions',
-                icon: Icons.bookmark_border,
-                onTap: () {
-                  context.pushNamed(Routes.historyPage);
-                },
+                title: 'Security',
+                icon: Icons.security_outlined,
+                onTap: () {},
               ),
               verticalSpace(15),
               SattingsButton(
-                title: 'Settings',
-                icon: Icons.settings_outlined,
-                onTap: () {
-                },
+                title: 'help & support',
+                icon: Icons.help_outline,
+                onTap: () {},
               ),
               verticalSpace(40),
 
               AppTextButton(
                 textStyle: AppTextStyle.font14RedSemiBold,
                 onPressed: () {
-                  context.pushReplacementNamed(Routes.welcomeScreen);
+                  context.pushReplacementNamed(Routes.selectRoleScreen);
                 },
                 buttonText: 'Logout',
                 backgroundColor: ColorsManeger.mainBlue,

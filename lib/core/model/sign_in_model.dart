@@ -3,17 +3,15 @@ import 'package:bodycare_ai/core/network/api/end_point.dart';
 class SignInModel {
   final String message;
   final String token;
-  final Data data;
 
-  SignInModel(this.data, {required this.message, required this.token});
+  SignInModel( {required this.message, required this.token});
 
   Map<String, dynamic> toJson() {
-    return {'email': message, 'password': token, 'data': data.toJson()};
+    return {'email': message, 'password': token,};
   }
 
   factory SignInModel.fromJson(Map<String, dynamic> jsonData) {
     return SignInModel(
-      Data.fromJson(jsonData[ApiKey.data]),
       message: jsonData[ApiKey.status],
       token: jsonData[ApiKey.token],
     );

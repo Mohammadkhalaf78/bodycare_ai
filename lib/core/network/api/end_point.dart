@@ -1,10 +1,10 @@
 class EndPoint {
-  static String baseUrl = "https://final-project-izjy.vercel.app";
+  static String baseUrl = "http://final-project-izjy.vercel.app";
   static String signIn = "/api/user/signIn";
   static String signUp = "/api/user/signUp";
   static String getDoctors = '/api/doctor';
   static String sendMessage = '/api/aichat/message';
-  static String signUpDr = '/api/doctor/';
+  static String signUpDr = '/api/user/signUp';
   static String getUserDataEndPoint(id) {
     return "user/get-user/$id";
   }
@@ -28,4 +28,5 @@ class ApiKey {
   static String data = 'data';
   static String text = 'text';
   static String reportData = 'reportData';
+  static String message = 'message';
 }

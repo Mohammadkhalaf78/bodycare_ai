@@ -72,6 +72,8 @@ class SelectRoleScreen extends StatelessWidget {
                       isSelected: false,
                       onTap: () {
                         context.pushNamed(Routes.loginDoctorScreen);
+                      
+                      
                       },
                     ),
                   ),

@@ -27,7 +27,20 @@ class SignUpDoctorPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => DoctorCubit(DioConsumer(dio: Dio())),
       child: BlocConsumer<DoctorCubit, DoctorState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is DoctorSignUpLoading) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text('success')));
+            context.pushNamed(Routes.drMainNavigation);
+          } else if (state is DoctorSignUpFailed) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(
+              const SnackBar(content: Text('Sign up failed')),
+            );
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             backgroundColor: ColorsManeger.wightColor,
@@ -166,9 +179,8 @@ class SignUpDoctorPage extends StatelessWidget {
                                 : AppTextButton(
                                     textStyle: AppTextStyle.font16BlackBold,
                                     onPressed: () {
-                                      context.pushNamed(
-                                        Routes.registrationReceivedPage,
-                                      );
+                                      context.read<DoctorCubit>().SignUp();
+                                    
                                     },
                                     buttonText: 'Sign Up',
                                   ),
