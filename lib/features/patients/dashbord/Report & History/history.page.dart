@@ -12,7 +12,7 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('History',style: AppTextStyle.font25BlackBold,),
+        title: Text('History', style: AppTextStyle.font25BlackBold),
       ),
       backgroundColor: ColorsManeger.mainBlue,
       body: SafeArea(
@@ -28,10 +28,17 @@ class HistoryPage extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
+                  children: [
                     ReportHeader(),
                     verticalSpace(16),
                     DiagnosisSection(),
+                    verticalSpace(16),
+                    Image.asset(
+                      'assets/photo/—Pngtree—detailed human head anatomy with_20553138.png',
+                      height: 300,
+                      width: double.infinity,
+                    ),
+
                     verticalSpace(16),
                     WarningBox(),
                     verticalSpace(16),
@@ -39,7 +46,6 @@ class HistoryPage extends StatelessWidget {
                     verticalSpace(16),
                     AdviceSection(),
                     verticalSpace(16),
-                    ActionButtons(),
                   ],
                 ),
               ),
@@ -65,10 +71,7 @@ class ReportHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'AI-generated result',
-              style: AppTextStyle.font12Grayregular,
-            ),
+            Text('AI-generated result', style: AppTextStyle.font12Grayregular),
             StatusBadge(),
           ],
         ),
@@ -265,21 +268,6 @@ class AdviceSection extends StatelessWidget {
 }
 
 /// ================= BUTTONS =================
-class ActionButtons extends StatelessWidget {
-  const ActionButtons({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        PrimaryButton(title: 'Book a Doctor Appointment'),
-        SizedBox(height: 10.h),
-        SecondaryButton(title: 'View Previous Reports'),
-      ],
-    );
-  }
-}
-
 /// ================= COMMON =================
 class SectionTitle extends StatelessWidget {
   final String title;
@@ -294,52 +282,4 @@ class SectionTitle extends StatelessWidget {
     );
   }
 }
-
-class PrimaryButton extends StatelessWidget {
-  final String title;
-
-  const PrimaryButton({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 46.h,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(title, style: TextStyle(fontSize: 14.sp)),
-      ),
-    );
-  }
-}
-
-class SecondaryButton extends StatelessWidget {
-  final String title;
-
-  const SecondaryButton({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 46.h,
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(title, style: TextStyle(fontSize: 14.sp)),
-      ),
-    );
-  }
-}
-
 

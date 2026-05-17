@@ -62,6 +62,13 @@ class AppTextStyle {
     fontWeight: FontWeightHelper.medium,
     color: ColorsManeger.mainBlue,
   );
+  static TextStyle font14GrayRegular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManeger.gray,
+  );
+
+
 
   static TextStyle font16GreenRegular = TextStyle(
     fontSize: 16.sp,
@@ -85,6 +92,11 @@ class AppTextStyle {
   static TextStyle font14GreenSemiBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManeger.wightGreen,
+  );
+  static TextStyle font14GreenMedium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.medium,
     color: ColorsManeger.wightGreen,
   );
   static TextStyle font14BlackSemiBold = TextStyle(

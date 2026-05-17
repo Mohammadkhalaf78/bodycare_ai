@@ -29,4 +29,5 @@ class ApiKey {
   static String text = 'text';
   static String reportData = 'reportData';
   static String message = 'message';
+  static String body_part = 'body_part';
 }

@@ -74,22 +74,34 @@ class DioConsumer extends ApiConsumer {
     }
   }
 
-  @override
-  Future post(
-    String path, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    bool isFromData = false,
-  }) async {
-    try {
-      final response = await dio.post(
-        path,
-        data: isFromData ? FormData.fromMap(data) : data,
-        queryParameters: queryParameters,
-      );
+@override
+Future post(
+  String path, {
+  dynamic data,
+  Map<String, dynamic>? queryParameters,
+  bool isFromData = false,
+}) async {
+  try {
+    final response = await dio.post(
+      path,
+      data: isFromData ? FormData.fromMap(data) : data,
+      queryParameters: queryParameters,
+      options: Options(
+        // ✅ خلي الـ Dio يقبل كل الـ status codes ومتعملش throw
+        validateStatus: (status) => status != null && status < 600,
+      ),
+    );
+    
+    // ✅ لو 500 ارجع الـ data زي ما هي
+    if (response.statusCode == 500) {
+      print('⚠️ Server 500: ${response.data}');
       return response.data;
-    } on DioException catch (e) {
-      handleDioExceptions(e);
     }
+    
+    return response.data;
+  } on DioException catch (e) {
+    handleDioExceptions(e);
   }
+}
+
 }

@@ -1,8 +1,11 @@
 import 'package:bodycare_ai/core/helpers/spacing.dart';
+import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
+import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:bodycare_ai/core/helpers/extensions.dart';
 
 /// ================= PAGE =================
 class MedicalDiagramReport extends StatelessWidget {
@@ -25,10 +28,12 @@ class MedicalDiagramReport extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
+                  children: [
                     ReportHeader(),
                     verticalSpace(16),
                     DiagnosisSection(),
+                    verticalSpace(16),
+                    Image.asset('assets/photo/—Pngtree—detailed human head anatomy with_20553138.png',height: 300,width: double.infinity,),
                     verticalSpace(16),
                     WarningBox(),
                     verticalSpace(16),
@@ -62,10 +67,7 @@ class ReportHeader extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'AI-generated result',
-              style: AppTextStyle.font12Grayregular,
-            ),
+            Text('AI-generated result', style: AppTextStyle.font12Grayregular),
             StatusBadge(),
           ],
         ),
@@ -269,9 +271,15 @@ class ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PrimaryButton(title: 'Book a Doctor Appointment'),
+        AppTextButton(
+          textStyle: AppTextStyle.font18WhiteBold,
+          onPressed: () {
+            Navigation(context).pushNamed(Routes.doctorsPage);
+          },
+          buttonText: 'Book an Appointment',
+        ),
         SizedBox(height: 10.h),
-        SecondaryButton(title: 'View Previous Reports'),
+        SecondaryButton(title: 'back to home screen'),
       ],
     );
   }
@@ -292,30 +300,6 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
-class PrimaryButton extends StatelessWidget {
-  final String title;
-
-  const PrimaryButton({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 46.h,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(title, style: TextStyle(fontSize: 14.sp)),
-      ),
-    );
-  }
-}
-
 class SecondaryButton extends StatelessWidget {
   final String title;
 
@@ -332,11 +316,11 @@ class SecondaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigation(context).pushNamed(Routes.mainNavigation);
+        },
         child: Text(title, style: TextStyle(fontSize: 14.sp)),
       ),
     );
   }
 }
-
-

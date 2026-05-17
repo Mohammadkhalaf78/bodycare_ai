@@ -1,4 +1,3 @@
-import 'package:bodycare_ai/core/cubit/nav_cubit.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/font_weight_helper.dart';
@@ -22,10 +21,8 @@ class HomeScreenDoctorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     const bgColor = Color(0xFFF7FAF9);
     const primaryGreen = Color(0xFF2F9E84);
-    const lightGreen = Color(0xFFDDF5EF);
     const cardBorder = Color(0xFFD1E8E2);
     const textDark = Color(0xFF101828);
-    const textMuted = Color(0xFF5E7C75);
 
     final firstThree = patients.take(3).toList();
 

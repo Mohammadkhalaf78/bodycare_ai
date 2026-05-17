@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
 class AppFormPhoneFiled extends StatelessWidget {
-  const AppFormPhoneFiled({super.key, required this.controller});
+  const AppFormPhoneFiled({super.key, required this.controller, required this.validator});
   final PhoneController controller;
+  final FormFieldValidator validator;
 
   @override
   Widget build(BuildContext context) {
     return PhoneFormField(
-      controller:controller ,
+      validator: validator,
+      controller: controller,
       // initialValue: PhoneNumber(
       //   isoCode: IsoCode.EG,
       //   nsn: controller,

@@ -1,8 +1,8 @@
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctors/doctors_page.dart';
-import 'package:bodycare_ai/features/patients/profile_page.dart';
-import 'package:bodycare_ai/features/patients/tips_page.dart';
+import 'package:bodycare_ai/features/patients/profle/profile_page.dart';
+import 'package:bodycare_ai/features/patients/tips/tips_page.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigation extends StatefulWidget {

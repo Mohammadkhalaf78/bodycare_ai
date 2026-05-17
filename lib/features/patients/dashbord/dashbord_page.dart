@@ -21,7 +21,6 @@ class DashBoardPage extends StatelessWidget {
       backgroundColor: ColorsManeger.mainBlue,
       body: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) {
-          // TODO: implement listener
         },
         builder: (context, state) {
           return SafeArea(
@@ -88,7 +87,7 @@ class DashBoardPage extends StatelessWidget {
                                   const SizedBox(height: 12),
                                   ElevatedButton(
                                     onPressed: () {
-                                      context.pushNamed('/BodyDiagram');
+                                      context.pushNamed(Routes.bodyDiagram);
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.white,
@@ -153,7 +152,6 @@ class DashBoardPage extends StatelessWidget {
                             );
                           },
                         ),
-
                         ],
                     ),
                   ),
@@ -169,6 +167,7 @@ class DashBoardPage extends StatelessWidget {
   }
 }
 
+// ignore: camel_case_types
 class personal_petiant_Details extends StatelessWidget {
   const personal_petiant_Details({
     super.key,
@@ -202,7 +201,7 @@ class personal_petiant_Details extends StatelessWidget {
                 ),
                 SizedBox(height: 2),
                 Text(
-                  'mohamed👋',
+                  '${CacheHelper().getData(key: ApiKey.name) ?? 'User'} 👋',
                   // '${context.read<UserCubit>().user!.data.name} 👋',
                   style: AppTextStyle.font18BlackBold,
                 ),

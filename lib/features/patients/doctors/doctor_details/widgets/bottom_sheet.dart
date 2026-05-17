@@ -1,3 +1,5 @@
+import 'package:bodycare_ai/core/helpers/extensions.dart';
+import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,9 @@ class BottomSheetWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 20),
         child: AppTextButton(
           textStyle: AppTextStyle.font14WightMedium,
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed(Routes.SelectTimeSlotScreen);
+          },
           buttonText: 'Book Appointment',
         ),
       );

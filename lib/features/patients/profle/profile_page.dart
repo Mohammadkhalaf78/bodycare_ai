@@ -31,11 +31,12 @@ class ProfilePage extends StatelessWidget {
               ),
               verticalSpace(20),
               Text(
-                '${CacheHelper().getData(key: ApiKey.name)}',
+                // '${CacheHelper().getData(key: ApiKey.name)}',
+                '${CacheHelper().getData(key: ApiKey.name) ?? 'User'}',
                 style: AppTextStyle.font18BlackBold,
               ),
               verticalSpace(2),
-              Text('mohae@gmail.com', style: AppTextStyle.font12Grayregular),
+              Text('${CacheHelper().getData(key: ApiKey.email) ?? 'user@example.com'}', style: AppTextStyle.font12Grayregular),
               verticalSpace(20),
               SattingsButton(
                 title: 'Edit Profile',
@@ -64,7 +65,7 @@ class ProfilePage extends StatelessWidget {
               AppTextButton(
                 textStyle: AppTextStyle.font14RedSemiBold,
                 onPressed: () {
-                  context.pushReplacementNamed(Routes.welcomeScreen);
+                  context.pushReplacementNamed(Routes.loginScreen);
                 },
                 buttonText: 'Logout',
                 backgroundColor: ColorsManeger.mainBlue,

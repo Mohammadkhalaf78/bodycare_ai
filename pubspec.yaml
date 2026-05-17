@@ -78,6 +78,7 @@ flutter:
     - assets/model/
     - assets/env/
     - assets/photo/
+    - assets/photo/advice/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

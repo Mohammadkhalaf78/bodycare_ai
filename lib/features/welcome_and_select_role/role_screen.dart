@@ -6,6 +6,7 @@ import 'package:bodycare_ai/core/network/api/dio_consumer.dart';
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
+import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/widgets/role_card.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,9 @@ class SelectRoleScreen extends StatelessWidget {
                       icon: Icons.person,
                       isSelected: false, // just for UI sample
                       onTap: () {
-                        context.pushNamed(Routes.loginScreen);
+                        context.read<UserCubit>().isLoggedIn()
+                            ? context.pushNamed(Routes.loginScreen)
+                            : context.pushNamed(Routes.mainNavigation);
                       },
                     ),
                   ),
@@ -72,13 +75,19 @@ class SelectRoleScreen extends StatelessWidget {
                       isSelected: false,
                       onTap: () {
                         context.pushNamed(Routes.loginDoctorScreen);
-                      
-                      
                       },
                     ),
                   ),
                 ],
-                
+              ),
+              AppTextButton(
+                onPressed: () {
+                  context.pushNamed(Routes.mainNavigation);
+                },
+
+                backgroundColor: Colors.transparent,
+                textStyle: AppTextStyle.font14GrayMedium,
+                buttonText: 'Login as Admin',
               ),
               const Spacer(),
               Center(

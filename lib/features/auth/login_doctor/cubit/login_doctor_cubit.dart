@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:bodycare_ai/core/model/sign_in_model.dart';
 import 'package:bodycare_ai/core/network/api/api_consumer.dart';
 import 'package:bodycare_ai/core/network/api/end_point.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -12,6 +12,8 @@ class LoginDoctorCubit extends Cubit<LoginDoctorState> {
   final ApiConsumer api;
   TextEditingController doctorLoginEmail = TextEditingController();
   TextEditingController doctorLoginPassword = TextEditingController();
+  SignInModel? user;
+  final formkay = GlobalKey<FormState>();
 
   login() async {
     try {
@@ -24,10 +26,11 @@ class LoginDoctorCubit extends Cubit<LoginDoctorState> {
         },
       );
       print('response: $response');
+      user = SignInModel.fromJson(response);
+      // final decodedToken = JwtDecoder.decode(user!.token);
       emit(LoginDoctorSuccess());
     } on Exception catch (e) {
       emit(LoginDoctorError(e.toString()));
     }
   }
 }
-

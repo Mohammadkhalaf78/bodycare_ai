@@ -1,4 +1,3 @@
-import 'package:bodycare_ai/core/model/chatboot_model.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 
 class UserState {}
@@ -13,20 +12,18 @@ final class SignInLoading extends UserState {}
 
 final class SignInFailure extends UserState {
   final String errMessage;
-
   SignInFailure({required this.errMessage});
 }
 
 class GetDoctorsSuccess extends UserState {
   final DoctorsModel doctors;
-
   GetDoctorsSuccess({required this.doctors});
 }
+
 final class GetDoctorsLoading extends UserState {}
 
 final class GetDoctorsFailure extends UserState {
   final String errMessage;
-
   GetDoctorsFailure({required this.errMessage});
 }
 
@@ -36,7 +33,6 @@ final class SignUpLoading extends UserState {}
 
 final class SignUpFailure extends UserState {
   final String errMessage;
-
   SignUpFailure({required this.errMessage});
 }
 
@@ -46,40 +42,18 @@ final class GetUserLoading extends UserState {}
 
 final class GetUserFailure extends UserState {
   final String errMessage;
-
   GetUserFailure({required this.errMessage});
 }
-class GetReportSuccess extends UserState {
-  final ChatbootModel report;
 
-  GetReportSuccess({required this.report});
-}
+// ✅ بيحمل ChatResponseModel عشان توصل لـ report + aiReply في الـ UI
 
 
 
-final class ChatBootSuccess extends UserState {}
-
-final class ChatBootLoading extends UserState {}
-
-final class ChatBootFailure extends UserState {
-  final String errMessage;
-
-  ChatBootFailure({required this.errMessage});
-}
-
-///model state -----------------------------------
-
+// Model States
 class ModelPartSelected extends UserState {
   final List<String> selectedParts;
-
   ModelPartSelected(this.selectedParts);
 }
-
-
-
-
-//------------------------------------
-
 
 abstract class Model3DState {}
 
@@ -87,6 +61,5 @@ class Model3DInitial extends Model3DState {}
 
 class Model3DPartSelected extends Model3DState {
   final String partName;
-
   Model3DPartSelected(this.partName);
 }

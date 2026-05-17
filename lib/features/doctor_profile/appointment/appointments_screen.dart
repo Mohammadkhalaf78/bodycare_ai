@@ -2,7 +2,6 @@ import 'package:bodycare_ai/core/helpers/extensions.dart';
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/font_weight_helper.dart';
 import 'package:bodycare_ai/features/doctor_profile/data/model.dart';
-import 'package:bodycare_ai/features/doctor_profile/data/patient_model.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentsScreen extends StatelessWidget {

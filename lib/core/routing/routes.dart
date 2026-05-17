@@ -24,6 +24,7 @@ class Routes {
   static const String profileScreen = '/ProfileScreen';
   static const String caseDatailsScreen = '/CaseDatailsScreen';
   static const String appointmentDetailsScreen = '/AppointmentDetailsScreen';
+  static const String SelectTimeSlotScreen = '/SelectTimeSlotScreen';
 
 
   //doctor routes

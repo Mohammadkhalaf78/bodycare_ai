@@ -1,7 +1,7 @@
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/features/auth/forget_password/forgot_password_patient.dart';
 import 'package:bodycare_ai/features/auth/login_doctor/login_doctor_page.dart';
-import 'package:bodycare_ai/features/auth/login_petiant/sign_in_pathent_screen.dart';
+import 'package:bodycare_ai/features/auth/sign_up_petiant/sign_in_pathent_screen.dart';
 import 'package:bodycare_ai/features/auth/sign_up_doctor/registration_received_page.dart';
 import 'package:bodycare_ai/features/auth/sign_up_doctor/sign_up_doctor_page.dart';
 import 'package:bodycare_ai/features/doctor_profile/appointment/appointments_screen.dart';
@@ -9,22 +9,22 @@ import 'package:bodycare_ai/features/doctor_profile/appointment_details/appointm
 import 'package:bodycare_ai/features/doctor_profile/case_datails/case_datails_screen.dart';
 import 'package:bodycare_ai/features/doctor_profile/home_screen/home_screen_page.dart';
 import 'package:bodycare_ai/features/doctor_profile/profile/profile_screen.dart';
+import 'package:bodycare_ai/features/patients/doctors/selected_time/select_time_slot_screen.dart';
 import 'package:bodycare_ai/layout/main_layout_doctor.dart';
 import 'package:bodycare_ai/layout/main_navigation.dart';
 import 'package:bodycare_ai/features/patients/dashbord/Report%20&%20History/history.page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/Report%20&%20History/medical_diagram_report.dart';
-import 'package:bodycare_ai/features/patients/dashbord/chat_page.dart';
+import 'package:bodycare_ai/features/patients/dashbord/chat_boot/chat_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/dashbord_page.dart';
-import 'package:bodycare_ai/features/patients/dashbord/session_details_page.dart';
+import 'package:bodycare_ai/features/patients/dashbord/session/session_details_page.dart';
 import 'package:bodycare_ai/features/patients/dashbord/body_diagram/body-diagram.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctor_details/doctor_datials_page.dart';
 import 'package:bodycare_ai/features/patients/doctors/doctors/doctors_page.dart';
-import 'package:bodycare_ai/features/patients/dashbord/report_details_page.dart';
+import 'package:bodycare_ai/features/patients/dashbord/Report%20&%20History/report_details_page.dart';
 import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
-import 'package:bodycare_ai/core/model/chatboot_model.dart';
 import 'package:bodycare_ai/features/users/data/models/sessions_history.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/role_screen.dart';
-import 'package:bodycare_ai/features/auth/patient_login/login_patient_screen.dart';
+import 'package:bodycare_ai/features/auth/login_petiant/login_patient_screen.dart';
 import 'package:bodycare_ai/features/welcome_and_select_role/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -64,6 +64,9 @@ class AppRoute {
       case Routes.appointmentsScreen:
         return MaterialPageRoute(builder: (_) => AppointmentsScreen());
 
+      case Routes.SelectTimeSlotScreen:
+        return MaterialPageRoute(builder: (_) => SelectTimeSlotScreen());
+
       case Routes.profileScreen:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
 
@@ -83,7 +86,7 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => DoctorsPage());
 
       case Routes.chatPage:
-        return MaterialPageRoute(builder: (_) => ChatPage());
+        return MaterialPageRoute(builder: (_) => ChatPage(selectedPart: '',));
 
       case Routes.historyPage:
         return MaterialPageRoute(builder: (_) => HistoryPage());
@@ -93,7 +96,7 @@ class AppRoute {
 
   
       case Routes.reportDetailsPage:
-        final args = settings.arguments as ChatbootModel;
+        final args = settings.arguments; // keep dynamic to avoid incorrect cast
         return MaterialPageRoute(
           builder: (_) => ReportDetailsPage(reportData: args),
         );
