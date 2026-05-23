@@ -86,7 +86,8 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => DoctorsPage());
 
       case Routes.chatPage:
-        return MaterialPageRoute(builder: (_) => ChatPage(selectedPart: '',));
+        final part = settings.arguments as String? ?? '';
+        return MaterialPageRoute(builder: (_) => ChatPage(selectedPart: part));
 
       case Routes.historyPage:
         return MaterialPageRoute(builder: (_) => HistoryPage());

@@ -1,3 +1,4 @@
 {
-  "cmake.sourceDirectory": "C:/FlutterProjects/bodycare_ai/linux"
+  "cmake.sourceDirectory": "C:/FlutterProjects/bodycare_ai/linux",
+  "cmake.ignoreCMakeListsMissing": true
 }

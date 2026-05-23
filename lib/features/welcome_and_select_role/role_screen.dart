@@ -61,8 +61,8 @@ class SelectRoleScreen extends StatelessWidget {
                       isSelected: false, // just for UI sample
                       onTap: () {
                         context.read<UserCubit>().isLoggedIn()
-                            ? context.pushNamed(Routes.loginScreen)
-                            : context.pushNamed(Routes.mainNavigation);
+                            ? context.pushNamed(Routes.mainNavigation)
+                            : context.pushNamed(Routes.loginScreen);
                       },
                     ),
                   ),

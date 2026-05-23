@@ -3,13 +3,15 @@ import 'package:bodycare_ai/core/network/api/end_point.dart';
 import 'package:dio/dio.dart';
 
 class ApiInterceptor extends Interceptor {
+  static const _testToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhZHlAZXhhbXBsZS5jb20iLCJfaWQiOiI2YTExNDE5YjY1ZjQ1MDVkMjhmNWY0ODMiLCJyb2xlIjoiVXNlciIsIm5hbWUiOiJkci4gYWhtZWQgaGFzc2FuIiwiaWF0IjoxNzc5NTU4NDYzLCJleHAiOjE3Nzk2NDQ4NjN9.IOw939rA2A8x28RPwiS62N_IKmNNjvdUQVf18SaCerU';
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['Authorization'] =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwiX2lkIjoiNjllZjg2YzJiOGI5MGZlMmYwZmNhMGRiIiwicm9sZSI6IlVzZXIiLCJuYW1lIjoibW9oYW1tZWQiLCJpYXQiOjE3Nzg5NDQ5NjIsImV4cCI6MTc3OTAzMTM2Mn0.vm7sCdHLKYPhp5eX4UqW6xRGj63ANV6AdmROO8xvdlQ';
-    // CacheHelper().getData(key: ApiKey.token) != null
-    //     ? 'Bearer ${CacheHelper().getData(key: ApiKey.token)}'
-    //     : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNAZ21haWwuY29tIiwiX2lkIjoiNjllZjg2YzJiOGI5MGZlMmYwZmNhMGRiIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3Nzc1ODA4MTQsImV4cCI6MTc3NzY2NzIxNH0.VwWc5kAEz5dhwRl1uXK4neZbsUJpnfiToGo8TV39etc';
+    final token = CacheHelper().getData(key: ApiKey.token) ?? _testToken;
+    options.headers['Authorization'] = 'Bearer $token';
     super.onRequest(options, handler);
   }
 }
+
+

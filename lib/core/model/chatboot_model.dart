@@ -149,12 +149,14 @@
 class ChatResponseModel {
   final String? status;
   final String? sessionStatus;
+  final String? chatId;
   final AiReply? aiReply;
   final ReportData? report;
 
   ChatResponseModel({
     this.status,
     this.sessionStatus,
+    this.chatId,
     this.aiReply,
     this.report,
   });
@@ -162,14 +164,15 @@ class ChatResponseModel {
   factory ChatResponseModel.fromJson(Map<String, dynamic> json) {
     return ChatResponseModel(
       status: json['status'] ?? json['aiReply']?['status'] ?? '',
-      sessionStatus: json['session_status'] ?? 
-                     json['aiReply']?['session_status'] ?? '',
-      aiReply: json['aiReply'] != null 
-               ? AiReply.fromJson(json['aiReply']) 
-               : null,
-      report: json['report'] != null 
-              ? ReportData.fromJson(json['report']) 
-              : null,
+      sessionStatus: json['session_status'] ??
+          json['aiReply']?['session_status'] ?? '',
+      chatId: json['chatId']?.toString(),
+      aiReply: json['aiReply'] != null
+          ? AiReply.fromJson(json['aiReply'])
+          : null,
+      report: json['report'] != null
+          ? ReportData.fromJson(json['report'])
+          : null,
     );
   }
 
