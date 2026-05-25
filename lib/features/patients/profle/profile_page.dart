@@ -65,7 +65,7 @@ class ProfilePage extends StatelessWidget {
               AppTextButton(
                 textStyle: AppTextStyle.font14RedSemiBold,
                 onPressed: () {
-                  context.pushReplacementNamed(Routes.loginScreen);
+                  context.pushNamed(Routes.loginScreen);
                 },
                 buttonText: 'Logout',
                 backgroundColor: ColorsManeger.mainBlue,

@@ -275,8 +275,7 @@ import 'package:phone_form_field/phone_form_field.dart';
 class UserCubit extends Cubit<UserState> {
   UserCubit(this.api) : super(UserInitial());
   final ApiConsumer api;
-    SignInModel? user;
-
+  SignInModel? user;
 
   late GlobalKey<FormState> signInFormKey = GlobalKey();
   TextEditingController signInEmail = TextEditingController();
@@ -290,10 +289,7 @@ class UserCubit extends Cubit<UserState> {
   TextEditingController confirmPassword = TextEditingController();
   late final fromkay = GlobalKey<FormState>();
 
-
-
   // ✅ helper يحدد لو الـ response ده report ولا سؤال
-
 
   signIn() async {
     try {
@@ -305,15 +301,19 @@ class UserCubit extends Cubit<UserState> {
           ApiKey.password: signInPassword.text,
         },
       );
-      user = SignInModel.fromJson(response);
-      final decodedToken = JwtDecoder.decode(user!.token);
+      if (response['status'] == 'success') {
+        user = SignInModel.fromJson(response);
+        final decodedToken = JwtDecoder.decode(user!.token);
 
-      // ignore: avoid_print
-      print('Decoded Token: $decodedToken');
-      CacheHelper().saveData(key: ApiKey.token, value: user!.token);
-      CacheHelper().saveData(key: ApiKey.email, value: decodedToken['email'] );
-      CacheHelper().saveData(key: ApiKey.name, value: decodedToken['name'] );
-      emit(SignInSuccess());
+        // ignore: avoid_print
+        print('Decoded Token: $decodedToken');
+        CacheHelper().saveData(key: ApiKey.token, value: user!.token);
+        CacheHelper().saveData(key: ApiKey.email, value: decodedToken['email']);
+        CacheHelper().saveData(key: ApiKey.name, value: decodedToken['name']);
+        emit(SignInSuccess());
+      } else {
+        emit(SignInFailure(errMessage: response['message']));
+      }
     } on ServerException catch (e) {
       emit(SignInFailure(errMessage: e.errModel.message.toString()));
     }
@@ -322,7 +322,7 @@ class UserCubit extends Cubit<UserState> {
   signUp() async {
     try {
       emit(SignUpLoading());
-      await api.post(
+      final response = await api.post(
         EndPoint.signUp,
         data: {
           ApiKey.name: signUpName.text,
@@ -334,7 +334,11 @@ class UserCubit extends Cubit<UserState> {
           ApiKey.address: '123 Main Street',
         },
       );
-      emit(SignUpSuccess());
+      if (response['status'] == 'success') {
+        emit(SignUpSuccess());
+      } else {
+        emit(SignUpFailure(errMessage: response['message']));
+      }
     } on ServerException catch (e) {
       emit(SignUpFailure(errMessage: e.errModel.message.toString()));
     }
@@ -356,7 +360,6 @@ class UserCubit extends Cubit<UserState> {
       emit(GetDoctorsFailure(errMessage: e.errModel.message.toString()));
     }
   }
-
 }
 
 class EntityData {

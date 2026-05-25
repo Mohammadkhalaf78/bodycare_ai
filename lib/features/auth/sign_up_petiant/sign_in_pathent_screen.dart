@@ -24,7 +24,7 @@ class SignUpPathientScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is SignUpSuccess) {
           context.pushNamed('/loginScreen');
-        }else if (state is SignUpFailure) {
+        } else if (state is SignUpFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errMessage),
@@ -45,12 +45,12 @@ class SignUpPathientScreen extends StatelessWidget {
                     // Segmented control (statically showing Patient selected)
                     Logo(),
                     verticalSpace(22),
-    
+
                     Text(
                       'Create your account',
                       style: AppTextStyle.font32BlackBold,
                     ),
-    
+
                     // Card
                     Container(
                       width: double.infinity,
@@ -84,7 +84,7 @@ class SignUpPathientScreen extends StatelessWidget {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your name';
-                                }else if (value.length < 3) {
+                                } else if (value.length < 3) {
                                   return 'Name must be at least 3 characters';
                                 }
                                 return null;
@@ -95,7 +95,7 @@ class SignUpPathientScreen extends StatelessWidget {
                               hintStyle: AppTextStyle.font14GreenRegular,
                             ),
                             const SizedBox(height: 14),
-                            
+
                             // Email label
                             Text(
                               'Email',
@@ -107,8 +107,9 @@ class SignUpPathientScreen extends StatelessWidget {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
-                                }else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                                    .hasMatch(value)) {
+                                } else if (!RegExp(
+                                  r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                                ).hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
                                 return null;
@@ -119,7 +120,7 @@ class SignUpPathientScreen extends StatelessWidget {
                               hintStyle: AppTextStyle.font14GreenRegular,
                             ),
                             verticalSpace(14),
-                            
+
                             // phone label
                             Text(
                               'phone Number',
@@ -131,8 +132,9 @@ class SignUpPathientScreen extends StatelessWidget {
                               validator: (value) {
                                 if (value == null || value.nsn.isEmpty) {
                                   return 'Please enter your phone number';
-                                }else if (!RegExp(r'^\d{10,15}$')
-                                    .hasMatch(value.nsn)) {
+                                } else if (!RegExp(
+                                  r'^\d{10,15}$',
+                                ).hasMatch(value.nsn)) {
                                   return 'Please enter 10 to 15 digits for the phone number';
                                 }
                                 return null;
@@ -140,7 +142,7 @@ class SignUpPathientScreen extends StatelessWidget {
                               controller: context.read<UserCubit>().signUpPhone,
                             ),
                             verticalSpace(14),
-                            
+
                             // Birthday label
                             Text(
                               'Birthday',
@@ -148,9 +150,9 @@ class SignUpPathientScreen extends StatelessWidget {
                             ),
                             verticalSpace(8),
                             Birthday(),
-                            
+
                             verticalSpace(14),
-                            
+
                             // Gender label
                             Text(
                               'Gender',
@@ -160,7 +162,7 @@ class SignUpPathientScreen extends StatelessWidget {
                             // Email input
                             Gendar(),
                             verticalSpace(14),
-                            
+
                             // Password label
                             Text(
                               'Password',
@@ -172,21 +174,23 @@ class SignUpPathientScreen extends StatelessWidget {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
-                                }else if (value.length < 6) {
+                                } else if (value.length < 6) {
                                   return 'Password must be at least 6 characters';
                                 }
                                 return null;
                               },
-                              controller: context.read<UserCubit>().signUpPassword,
+                              controller: context
+                                  .read<UserCubit>()
+                                  .signUpPassword,
                               prefixIcon: Icon(Icons.lock_outline),
                               hintText: 'Enter your password',
                               hintStyle: AppTextStyle.font14GreenRegular,
                               isObscureText: true,
                               suffixIcons: Icon(Icons.visibility_off_outlined),
                             ),
-                            
+
                             verticalSpace(14),
-                            
+
                             // Password label
                             Text(
                               'Confirm Password',
@@ -202,15 +206,19 @@ class SignUpPathientScreen extends StatelessWidget {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please confirm your password';
-                                }else if (value != context.read<UserCubit>().signUpPassword.text) {
+                                } else if (value !=
+                                    context
+                                        .read<UserCubit>()
+                                        .signUpPassword
+                                        .text) {
                                   return 'Passwords do not match';
                                 }
                                 return null;
                               },
                             ),
-                            
+
                             verticalSpace(20),
-                            
+
                             // Sign Up button
                             context.read<UserCubit>().state is SignUpLoading
                                 ? Center(
@@ -218,20 +226,22 @@ class SignUpPathientScreen extends StatelessWidget {
                                       color: ColorsManeger.darkGreen,
                                     ),
                                   )
-                                :
-                            AppTextButton(
-                              textStyle: AppTextStyle.font16BlackBold,
-                              onPressed: () {
-                                if (context.read<UserCubit>().signUpFormKey.currentState!
-                                    .validate()) {
-                                  context.read<UserCubit>().signUp();
-                                }
-                              },
-                              buttonText: 'Sign Up',
-                            ),
-                            
+                                : AppTextButton(
+                                    textStyle: AppTextStyle.font16BlackBold,
+                                    onPressed: () {
+                                      if (context
+                                          .read<UserCubit>()
+                                          .signUpFormKey
+                                          .currentState!
+                                          .validate()) {
+                                        context.read<UserCubit>().signUp();
+                                      }
+                                    },
+                                    buttonText: 'Sign Up',
+                                  ),
+
                             verticalSpace(12),
-                            
+
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -250,7 +260,7 @@ class SignUpPathientScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            
+
                             Center(
                               child: Wrap(
                                 children: [
