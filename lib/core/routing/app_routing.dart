@@ -1,3 +1,4 @@
+import 'package:bodycare_ai/core/network/end_point/end_point.dart';
 import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/features/auth/forget_password/forgot_password_patient.dart';
 import 'package:bodycare_ai/features/auth/login_doctor/login_doctor_page.dart';
@@ -65,14 +66,18 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => AppointmentsScreen());
 
       case Routes.SelectTimeSlotScreen:
-        return MaterialPageRoute(builder: (_) => SelectTimeSlotScreen());
+        final FormattedDoctor doctor = settings.arguments as FormattedDoctor;
+
+        return MaterialPageRoute(
+          builder: (_) => SelectTimeSlotScreen(doctor: doctor),
+        );
 
       case Routes.profileScreen:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
 
       case Routes.caseDatailsScreen:
         return MaterialPageRoute(builder: (_) => CaseDatailsScreen());
-        
+
       case Routes.appointmentDetailsScreen:
         return MaterialPageRoute(builder: (_) => AppointmentDetailsScreen());
 
@@ -93,9 +98,12 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => HistoryPage());
 
       case Routes.medicalDiagramReport:
-        return MaterialPageRoute(builder: (_) => MedicalDiagramReport());
+        final part = settings.arguments as String? ?? '';
 
-  
+        return MaterialPageRoute(
+          builder: (_) => MedicalDiagramReport(bodyPart: part),
+        );
+
       case Routes.reportDetailsPage:
         final args = settings.arguments; // keep dynamic to avoid incorrect cast
         return MaterialPageRoute(

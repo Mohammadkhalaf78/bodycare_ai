@@ -190,7 +190,7 @@ class DoctorDetailsPage extends StatelessWidget {
       ),
 
       // زر Book Appointment أسفل الشاشة
-      bottomSheet:BottomSheetWidget(),
+      bottomSheet:BottomSheetWidget(doctor: doctorIndex,),
       
     );
   }

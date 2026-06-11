@@ -50,7 +50,7 @@ class ChatPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, left: 22),
-                  child: Humen_Part(bodyPart: selectedPart),
+                  child: Humen_Part(bodyPart: selectedPart,h: 150,w: 150,),
                 ),
                 verticalSpace(10),
                 Expanded(
@@ -149,7 +149,7 @@ class ChatPage extends StatelessWidget {
                           onPressed: () {
                             context.pushNamed(
                               Routes.medicalDiagramReport,
-                              arguments: context.read<ChatbootCubit>().chatboot,
+                              arguments:selectedPart ,
                             );
                           },
                           buttonText: 'go to report',

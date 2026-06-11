@@ -3,13 +3,16 @@ import 'package:bodycare_ai/core/routing/routes.dart';
 import 'package:bodycare_ai/core/theming/colors.dart';
 import 'package:bodycare_ai/core/theming/style.dart';
 import 'package:bodycare_ai/core/widgets/app_text_button.dart';
+import 'package:bodycare_ai/features/patients/dashbord/chat_boot/part_of_model/humen_part_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bodycare_ai/core/helpers/extensions.dart';
 
 /// ================= PAGE =================
 class MedicalDiagramReport extends StatelessWidget {
-  const MedicalDiagramReport({super.key});
+  const MedicalDiagramReport({super.key, required this.bodyPart});
+  final String bodyPart; // This should be passed as an argument in real implementation
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class MedicalDiagramReport extends StatelessWidget {
                     verticalSpace(16),
                     DiagnosisSection(),
                     verticalSpace(16),
-                    Image.asset('assets/photo/—Pngtree—detailed human head anatomy with_20553138.png',height: 300,width: double.infinity,),
+                    Humen_Part(bodyPart: bodyPart,h:300,w: 300,),
                     verticalSpace(16),
                     WarningBox(),
                     verticalSpace(16),

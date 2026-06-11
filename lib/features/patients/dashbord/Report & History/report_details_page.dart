@@ -5,16 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ReportDetailsPage extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final  reportData;
+  final reportData;
 
-  const ReportDetailsPage({super.key, required this.reportData});
+  const ReportDetailsPage({
+    super.key,
+    required this.reportData,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserState>(
-      
       builder: (context, state) {
-        
         return Scaffold(
           appBar: AppBar(
             title: const Text('Diagnosis Report'),

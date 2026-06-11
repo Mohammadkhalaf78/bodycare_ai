@@ -1,5 +1,6 @@
 import 'package:bodycare_ai/core/helpers/spacing.dart';
 import 'package:bodycare_ai/features/patients/doctors/selected_time/confirmation_page.dart';
+import 'package:bodycare_ai/features/users/data/models/doctors_model.dart';
 import 'package:flutter/material.dart';
 
 // ============================================================
@@ -43,7 +44,8 @@ const List<Map<String, String>> weekDays = [
 // 3. SCREEN
 // ============================================================
 class SelectTimeSlotScreen extends StatefulWidget {
-  const SelectTimeSlotScreen({super.key});
+  const SelectTimeSlotScreen({super.key, required this.doctor});
+  final FormattedDoctor doctor;
 
   @override
   State<SelectTimeSlotScreen> createState() => _SelectTimeSlotScreenState();
@@ -73,7 +75,7 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildDoctorCard(),
+                  _buildDoctorCard(widget.doctor),
                   const SizedBox(height: 20),
                   _buildDaySelector(),
                   const SizedBox(height: 24),
@@ -92,7 +94,7 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
             ),
           ),
           _buildBottomButton(context),
-          verticalSpace(22)
+          verticalSpace(22),
         ],
       ),
     );
@@ -119,7 +121,8 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
     );
   }
 
-  Widget _buildDoctorCard() {
+  Widget _buildDoctorCard(FormattedDoctor doctor) {
+    print("doctor image: ${doctor.imageUrl}");
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -137,16 +140,20 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
         children: [
           CircleAvatar(
             radius: 28,
-            backgroundColor: lightGrey,
+            backgroundImage:  NetworkImage(
+                'https://cdn.pixabay.com/photo/2023/12/21/06/23/doctor-8461303_1280.jpg',
+              ),
             // ضع صورة الدكتور هنا
-            child: const Icon(Icons.person, color: primaryColor, size: 30),
+            // child: doctor.imageUrl == null
+            //     ? const Icon(Icons.person, size: 28, color: Colors.white)
+            //     : null,
           ),
           const SizedBox(width: 14),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                'Dr. Evelyn Reed',
+                doctor.name,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
@@ -155,7 +162,7 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
               ),
               SizedBox(height: 4),
               Text(
-                'Orthopedic Surgeon',
+                doctor.specialty,
                 style: TextStyle(color: textGrey, fontSize: 13),
               ),
             ],
@@ -219,8 +226,11 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
             color: lightGrey,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Icon(Icons.calendar_month_outlined,
-              color: primaryColor, size: 20),
+          child: const Icon(
+            Icons.calendar_month_outlined,
+            color: primaryColor,
+            size: 20,
+          ),
         ),
       ],
     );
@@ -267,15 +277,15 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
           color: isSelected
               ? primaryColor
               : isBooked
-                  ? lightGrey
-                  : Colors.white,
+              ? lightGrey
+              : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: isSelected
                 ? primaryColor
                 : isBooked
-                    ? Colors.transparent
-                    : Colors.grey.shade200,
+                ? Colors.transparent
+                : Colors.grey.shade200,
             width: 1.5,
           ),
         ),
@@ -285,8 +295,8 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
             color: isSelected
                 ? Colors.white
                 : isBooked
-                    ? textGrey
-                    : textDark,
+                ? textGrey
+                : textDark,
             fontWeight: FontWeight.w500,
             fontSize: 13,
             decoration: isBooked ? TextDecoration.lineThrough : null,
@@ -305,8 +315,9 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
         height: 54,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor:
-                selectedTime != null ? primaryColor : Colors.grey.shade300,
+            backgroundColor: selectedTime != null
+                ? primaryColor
+                : Colors.grey.shade300,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -342,9 +353,6 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
       ),
     );
   }
-
-
-
 }
 
 // ============================================================
@@ -354,23 +362,3 @@ class _SelectTimeSlotScreenState extends State<SelectTimeSlotScreen> {
 // ============================================================
 // 5. MAIN - نقطة البداية
 // ============================================================
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Doctor App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Roboto',
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: const SelectTimeSlotScreen(),
-    );
-  }
-}

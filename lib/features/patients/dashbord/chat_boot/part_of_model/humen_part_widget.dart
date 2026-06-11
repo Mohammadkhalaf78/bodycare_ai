@@ -2,17 +2,18 @@
 import 'package:flutter/material.dart';
 
 class Humen_Part extends StatelessWidget {
-  const Humen_Part({super.key,required this.bodyPart});
+  const Humen_Part({super.key, required this.bodyPart, required this.h, required this.w});
   final String bodyPart;
+  final double h;
+  final double w;
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topLeft,
       child: Image.asset(
         '${getImagePath(bodyPart)}', // Replace 'Head' with the actual body part you want to display
-        width: 150,
-        height: 150,
+        width: w,
+        height: h,
       ),
     );
   }
@@ -30,8 +31,8 @@ String? getImagePath(String bodyPart) {
       return 'assets/photo/body_parts/chest.png';
     case 'Arm.l':
       return 'assets/photo/body_parts/Arm.png';
-    case 'Hip':
-      return 'assets/photo/body_parts/Hip.png';
+    case 'Thigh.r':
+      return 'assets/photo/body_parts/Arm.png';
     case 'Thigh':
       return 'assets/photo/body_parts/Thigh.png';
     case 'Knee':
