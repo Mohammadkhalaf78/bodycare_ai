@@ -49,6 +49,7 @@ dependencies:
   shared_preferences: ^2.5.4
   webview_flutter: ^4.13.1
   interactive_3d: ^2.1.0
+  image_picker: ^1.2.2
 
 
 dev_dependencies:

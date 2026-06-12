@@ -60,32 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                 },
                 buttonText: "Get Started",
               ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   height: 60,
-              //   child: ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //       backgroundColor: const Color(0xFF21B383),
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(18),
-              //       ),
-              //       elevation: 3,
-              //     ),
-              //     onPressed: () {
-              //       context.pushNamed(Routes.selectRoleScreen);
-              //     },
-              //     child: const Text(
-              //       "Get Started",
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //         color: Colors.white,
-              //         fontWeight: FontWeight.w600,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-
-              // const SizedBox(height: 20),
+            
             ],
           ),
         ),

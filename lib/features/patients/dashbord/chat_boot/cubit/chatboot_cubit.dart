@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:bodycare_ai/core/cache/cache_helper.dart';
 import 'package:bodycare_ai/core/model/chatboot_model.dart';
@@ -6,6 +8,7 @@ import 'package:bodycare_ai/core/network/api/end_point.dart';
 import 'package:bodycare_ai/core/network/errors/server_exception.dart';
 import 'package:bodycare_ai/features/users/data/models/messeges_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'chatboot_state.dart';
 
@@ -13,8 +16,18 @@ class ChatbootCubit extends Cubit<ChatbootState> {
   ChatbootCubit(this.api) : super(ChatbootInitial());
   final ApiConsumer api;
 
+  File? image;
+  final picker = ImagePicker();
+
   TextEditingController chatBootController = TextEditingController();
+  void initControllerListener() {
+  chatBootController.addListener(() {
+    emit(ChatBootTextChanged());
+  });
+}
+
   ChatResponseModel? chatboot;
+  String? _selectedPart; 
   String? _chatId;
   List<MessegesModel> chatData = [];
 
@@ -28,7 +41,7 @@ class ChatbootCubit extends Cubit<ChatbootState> {
 
   bool _isReportResponse(ChatResponseModel model) {
     if (model.status == 'REPORT') return true;
-    if (model.sessionStatus == 'COMPLETED') return true;
+    // if (model.sessionStatus == 'COMPLETED') return true;
     if (model.aiReply?.status == 'REPORT') return true;
     return false;
   }
@@ -37,16 +50,22 @@ class ChatbootCubit extends Cubit<ChatbootState> {
     chatboot = response;
     if (response.chatId != null) _chatId = response.chatId;
 
+    
+
     if (_isReportResponse(response)) {
-      chatData.add(MessegesModel(
-        messeges: '✅ Your diagnosis report is ready!',
-        isSender: false,
-      ));
+      chatData.add(
+        MessegesModel(
+          messeges: '✅ Your diagnosis report is ready!',
+          isSender: false,
+        ),
+      );
       CacheHelper().saveData(
         key: ApiKey.reportData,
-        value: response.report?.diagnosisEn ?? response.report?.diagnosisAr ?? '',
+        value:
+            response.report?.diagnosisEn ?? response.report?.diagnosisAr ?? '',
       );
-      if (!isClosed) emit(GetReportSuccess(reportResponse: response, report: null));
+      if (!isClosed)
+        emit(GetReportSuccess(reportResponse: response, report: null));
     } else {
       final botText = _extractBotText(response);
       chatData.add(MessegesModel(messeges: botText, isSender: false));
@@ -55,6 +74,7 @@ class ChatbootCubit extends Cubit<ChatbootState> {
   }
 
   Future<void> sendStartMassege(String selectedPart) async {
+    _selectedPart = selectedPart;
     chatData = [
       MessegesModel(
         messeges: 'I feel pain in the $selectedPart',
@@ -76,7 +96,8 @@ class ChatbootCubit extends Cubit<ChatbootState> {
       if (isClosed) return;
       _handleResponse(ChatResponseModel.fromJson(response));
     } on ServerException catch (e) {
-      if (!isClosed) emit(ChatBootFailure(errMessage: e.errModel.message.toString()));
+      if (!isClosed)
+        emit(ChatBootFailure(errMessage: e.errModel.message.toString()));
     }
   }
 
@@ -91,16 +112,27 @@ class ChatbootCubit extends Cubit<ChatbootState> {
     emit(ChatBootLoading());
 
     try {
-      final body = <String, dynamic>{
-        ApiKey.message: userMessage,
-      };
+      final body = <String, dynamic>{ApiKey.message: userMessage};
       if (_chatId != null) body['chatId'] = _chatId;
+      if (_selectedPart != null) body[ApiKey.body_part] = _selectedPart;
 
       final response = await api.post(EndPoint.sendMessage, data: body);
       if (isClosed) return;
       _handleResponse(ChatResponseModel.fromJson(response));
     } on ServerException catch (e) {
-      if (!isClosed) emit(ChatBootFailure(errMessage: e.errModel.message.toString()));
+      if (!isClosed)
+        emit(ChatBootFailure(errMessage: e.errModel.message.toString()));
+    }
+  }
+
+  Future<void> pickImage(ImageSource source) async {
+    // pick image frome camera or gallery
+    final pickedFile = await picker.pickImage(source: source);
+
+    // update selcted image
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+      emit(ImagePickerSuccess());
     }
   }
 

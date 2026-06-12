@@ -6,6 +6,9 @@ sealed class ChatbootState {
 }
 
 final class ChatbootInitial extends ChatbootState {}
+class ChatBootTextChanged extends ChatbootState {}
+class ImagePickerSuccess extends ChatbootState {
+}
 
 final class ModelPartSelected extends ChatbootState {
   final List<String> selectedParts;

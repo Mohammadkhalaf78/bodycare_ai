@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <!-- add permissions to Camera -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!-- add permissions to Internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
       

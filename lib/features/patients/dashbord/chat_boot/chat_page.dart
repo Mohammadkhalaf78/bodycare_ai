@@ -8,11 +8,13 @@ import 'package:bodycare_ai/core/widgets/app_text_button.dart';
 import 'package:bodycare_ai/core/widgets/app_text_form_filed.dart';
 import 'package:bodycare_ai/features/patients/dashbord/chat_boot/cubit/chatboot_cubit.dart';
 import 'package:bodycare_ai/features/patients/dashbord/chat_boot/part_of_model/humen_part_widget.dart';
+import 'package:bodycare_ai/features/patients/dashbord/chat_boot/take_photo_widget.dart';
 import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key, required this.selectedPart});
@@ -21,8 +23,9 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          ChatbootCubit(DioConsumer(dio: Dio()))..sendStartMassege(selectedPart),
+      create: (context) => ChatbootCubit(DioConsumer(dio: Dio()))
+        ..initControllerListener()
+        ..sendStartMassege(selectedPart),
       child: BlocConsumer<ChatbootCubit, ChatbootState>(
         listener: (context, state) {
           if (state is GetReportSuccess) {
@@ -36,30 +39,28 @@ class ChatPage extends StatelessWidget {
           }
         },
         builder: (context, state) {
+          final cubit = context.watch<ChatbootCubit>();
           return Scaffold(
             backgroundColor: ColorsManeger.mainBlue,
             appBar: AppBar(
               backgroundColor: ColorsManeger.wightColor,
               centerTitle: true,
-              title: Text(
-                'Questionnaire',
-                style: AppTextStyle.font18BlackBold,
-              ),
+              title: Text('Questionnaire', style: AppTextStyle.font18BlackBold),
             ),
             body: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, left: 22),
-                  child: Humen_Part(bodyPart: selectedPart,h: 150,w: 150,),
+                  child: Humen_Part(bodyPart: selectedPart, h: 150, w: 150),
                 ),
                 verticalSpace(10),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: context.watch<ChatbootCubit>().chatData.length +
+                    itemCount:
+                        context.watch<ChatbootCubit>().chatData.length +
                         (state is ChatBootLoading ? 1 : 0),
                     itemBuilder: (context, index) {
-                      final messages =
-                          context.watch<ChatbootCubit>().chatData;
+                      final messages = context.watch<ChatbootCubit>().chatData;
                       if (index == messages.length &&
                           state is ChatBootLoading) {
                         return const Padding(
@@ -103,6 +104,15 @@ class ChatPage extends StatelessWidget {
                           children: [
                             Expanded(
                               child: AppTextFormFiled(
+                                suffixIcons: IconButton(
+                                  onPressed: () {
+                                    cubit.pickImage(ImageSource.camera);
+                                  },
+                                  icon: Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: 33,
+                                  ),
+                                ),
                                 controller: context
                                     .read<ChatbootCubit>()
                                     .chatBootController,
@@ -119,10 +129,10 @@ class ChatPage extends StatelessWidget {
                             ),
                             horizontalSpace(12),
                             Container(
-                              height: 55.h,
-                              width: 55.w,
+                              height: 45.h,
+                              width: 45.w,
                               decoration: BoxDecoration(
-                                color: ColorsManeger.lightGreen,
+                                color: ColorsManeger.primary,
                                 borderRadius: BorderRadius.circular(33),
                               ),
                               child: IconButton(
@@ -131,28 +141,40 @@ class ChatPage extends StatelessWidget {
                                 },
                                 icon: const Icon(
                                   Icons.send,
-                                  color: ColorsManeger.wightColor,
+                                  color: ColorsManeger.border,
                                 ),
                               ),
                             ),
                           ],
                         ),
                         verticalSpace(10),
-                        AppTextButton(
-                          borderRadius: 33,
-                          horizontalpadding: 1,
-                          verticalPadding: 1,
-                          buttonWidh: 113.h,
-                          buttonHeight: 32.w,
-                          backgroundColor: ColorsManeger.mainBlue,
-                          textStyle: AppTextStyle.font14GrayMedium,
-                          onPressed: () {
-                            context.pushNamed(
-                              Routes.medicalDiagramReport,
-                              arguments:selectedPart ,
-                            );
-                          },
-                          buttonText: 'go to report',
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 33.h,
+                              width: 33.w,
+                              child: cubit.image != null
+                                  ? Image.file(cubit.image!)
+                                  : Container(),
+                            ),
+                            AppTextButton(
+                              borderRadius: 33,
+                              horizontalpadding: 1,
+                              verticalPadding: 1,
+                              buttonWidh: 113.h,
+                              buttonHeight: 32.w,
+                              backgroundColor: ColorsManeger.mainBlue,
+                              textStyle: AppTextStyle.font14GrayMedium,
+                              onPressed: () {
+                                context.pushNamed(
+                                  Routes.medicalDiagramReport,
+                                  arguments: selectedPart,
+                                );
+                              },
+                              buttonText: 'go to report',
+                            ),
+                          ],
                         ),
                       ],
                     ),
