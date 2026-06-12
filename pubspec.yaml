@@ -48,7 +48,7 @@ dependencies:
   flutter_cube: ^0.1.1
   shared_preferences: ^2.5.4
   webview_flutter: ^4.13.1
-  interactive_3d: ^1.2.3
+  interactive_3d: ^2.1.0
 
 
 dev_dependencies:
@@ -83,8 +83,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/model/
+    - assets/model/alaa2.glb
     - assets/env/
+    - assets/env/output_studio_ibl.ktx
+    - assets/env/output_studio_skybox.ktx
     - assets/photo/
     - assets/photo/advice/
     - assets/photo/body_parts/

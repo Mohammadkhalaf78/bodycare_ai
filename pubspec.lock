@@ -284,10 +284,10 @@ packages:
     dependency: "direct main"
     description:
       name: interactive_3d
-      sha256: cbceb4e9f9697ce59dbe2c92f2240870ab136c2d1211abbaef97edd3e637592e
+      sha256: "559ec62d219ffb1ba4cf81dab89dcad2533ba1dbb7528dbaf331fa9e3263dab5"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.4"
+    version: "2.1.0"
   intl:
     dependency: transitive
     description:
